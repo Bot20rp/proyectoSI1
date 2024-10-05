@@ -1,0 +1,15 @@
+/* App.css */
+.container {
+    display: grid;
+    grid-template-columns: 90px auto;
+    background: #f1ebeb;
+    transition: all 0.3s;
+  }
+  
+  .container.active {
+    grid-template-columns: 300px auto;
+  }
+  
+  body {
+    color: black;
+  }

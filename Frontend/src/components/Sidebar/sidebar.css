@@ -1,0 +1,93 @@
+:root {
+    --text-color: #333; /* Color de texto */
+    --bg-color: #fff; /* Color de fondo */
+    --bg3: #f0f0f0; /* Color de fondo 3 */
+    --bg4: #007bff; /* Color de fondo 4 */
+    --bg-tgderecha: #eee; /* Color de fondo de la barra lateral */
+  }
+  
+  
+  
+  
+   /* Sidebar.css */
+  
+  .sidebar-container {
+    color: var(--text-color);
+    background: var(--bg-color);
+    position: sticky;
+    padding-top: 20px;
+  }
+  
+  .sidebar-button {
+    position: absolute;
+    top: 48px; /* xxlSpacing */
+    right: -18px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-tgderecha);
+    box-shadow: 0 0 4px var(--bg3), 0 0 7px var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    transform: rotate(180deg);
+    border: none;
+    color: inherit;
+    font-size: inherit;
+    text-align: inherit;
+    padding: 0;
+    outline: none;
+  }
+  
+  .logo-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 24px; /* lgSpacing */
+  }
+  
+  .img-content img {
+    max-width: 100%;
+    height: auto;
+    transition: all 0.3s;
+  }
+  
+  .link-container {
+    margin: 8px 0;
+    padding: 0 15%;
+  }
+  
+  .link-container:hover {
+    background: var(--bg3);
+  }
+  
+  .links {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 6px 0; /* smSpacing */
+    color: var(--text-color);
+    height: 50px;
+  }
+  
+  .link-icon {
+    padding: 8px 16px; /* smSpacing y mdSpacing */
+    display: flex;
+  }
+  
+  .link-icon svg {
+    font-size: 25px;
+  }
+  
+  .links.active .link-icon svg {
+    color: var(--bg4);
+  }
+  
+  .divider {
+    height: 1px;
+    width: 100%;
+    background: var(--bg3);
+    margin: 24px 0; /* lgSpacing */
+  }

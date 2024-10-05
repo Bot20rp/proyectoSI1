@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  .slider-container .box .homeSlide{
+    margin-top: 80px;
+    padding: 40px 40px 60px;
+    display: flex;
+    flex-direction: column; /* Para hacer que los elementos sean verticales en móviles */
+  }
+  
+  .fila {
+    display: flex; /* Colocar columnas en la misma fila */
+    flex-wrap: wrap; /* Asegurarse de que las columnas se ajusten en pantallas pequeñas */
+    justify-content: space-between; /* Separar las columnas uniformemente */
+    align-items: center; /* Alinear verticalmente */
+  }
+  
+  .col {
+    flex: 1; /* Ocupar todo el ancho disponible */
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  .col img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain; 
+  }
+  
+ 
+ .col h1 {
+    font-size: 45px;
+    line-height: 55px;
+    margin: 50px 0 20px 0 ;
+   /*  margin-bottom: 20px; */   /* no da con esto  */
+  }
+  
+ .col p {
+    margin: 20px 0;
+    
+  }
+  
+
+  .btn-primary {
+   /*  padding: 10px 20px; */
+   /*  background-color: #c9ced3; */
+    color: #0f3460;
+    font-size: 15px;
+    position: absolute;
+    background: #d2d9e0;
+   /*  top: 2px;
+    left: 0; */
+    margin: auto;
+    padding: 2px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+  /*   background: transparent;
+    color: transparent; */
+    /* border: none;
+    cursor: pointer;
+    border-radius: 15px; */
+  }
+  
+  /* Hacer que el layout sea más flexible para pantallas más pequeñas */
+  @media (max-width: 768px) {
+    .fila {
+      flex-direction: column; /* Columnas en vertical en pantallas pequeñas */
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    .col img {
+      max-height: 200px;
+    }
+  }
+  

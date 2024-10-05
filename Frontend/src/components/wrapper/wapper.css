@@ -1,0 +1,48 @@
+.wrapper {
+    text-align: center;
+    background-color: white;
+    padding: 20px; /* Añadido padding para espacio */
+  }
+  
+  .container {
+    max-width: 1200px; /* Controla el ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor */
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center; /* Centra las columnas */
+    flex-wrap: wrap; /* Permite que las columnas se ajusten en pantallas más pequeñas */
+  }
+  
+  .feature {
+    width: calc(25% - 20px); /* Ancho de las columnas, 4 columnas en pantallas grandes */
+    margin: 10px; /* Margen entre columnas */
+    padding: 10px;
+    border: 4px solid white;
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+  }
+  
+  .feature h3 {
+    font-size: 18px;
+    font-weight: 500;
+    width: fit-content;
+    margin: 0 auto !important;
+  }
+  
+  .icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 25px;
+    background: #f3f5f9;
+    margin: 20px auto;
+  }
+  
+  .wrapper p {
+    font-size: 15px;
+    margin-top: 20px;
+  }

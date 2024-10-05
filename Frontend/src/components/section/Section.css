@@ -1,0 +1,21 @@
+.section {
+    padding: 20px; /* Espaciado superior e inferior */
+  }
+  
+  .container {
+    max-width: 1200px; /* Ancho máximo */
+    margin: 0 auto; /* Centrar el contenedor */
+    padding: 0 15px; /* Espaciado lateral */
+  }
+  
+  .heading {
+    text-align: center; /* Centrar el título */
+    margin-bottom: 20px; /* Espacio debajo del título */
+  }
+  
+  .fila {
+    display: flex; /* Usar flexbox para la fila */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+    justify-content: center; /* Centrar los elementos */
+    gap: 20px; /* Espacio entre los elementos */
+  }

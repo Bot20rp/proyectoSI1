@@ -1,0 +1,25 @@
+
+.filter-bar {
+    padding: 20px;
+    background-color: #f6f9fc; /* Fondo para el filtro */
+  }
+  
+  .filter-bar-container {
+    max-width: 1200px; /* Ancho máximo */
+    margin: 0 auto; /* Centrar */
+  }
+  
+  .filter-row {
+    display: flex;
+    justify-content: center; /* Centra los elementos */
+    gap: 20px; /* Espaciado entre columnas */
+  }
+  
+  .filter-col {
+    flex: 1; /* Ocupa el mismo espacio */
+    min-width: 200px; /* Ancho mínimo */
+  }
+  
+  .shop-list-container {
+    margin-top: 20px; /* Margen superior para separación */
+  }

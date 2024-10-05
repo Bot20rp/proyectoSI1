@@ -1,0 +1,26 @@
+/* Product.css */
+
+/* Definimos un contenedor personalizado */
+.custom-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Estilos para el encabezado de productos relacionados */
+  .related-products h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Si necesitas un diseño responsive */
+  @media (max-width: 768px) {
+    .custom-container {
+      padding: 0 10px;
+    }
+  
+    .related-products h3 {
+      font-size: 20px;
+    }
+  }

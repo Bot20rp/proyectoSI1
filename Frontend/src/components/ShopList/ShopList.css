@@ -1,0 +1,23 @@
+.shop-list {
+    display: flex;               /* Usar Flexbox para alinear las tarjetas */
+    flex-wrap: wrap;            /* Permitir que las tarjetas se envuelvan en múltiples líneas */
+    justify-content: center;     /* Centrar las tarjetas horizontalmente */
+    padding: 20px;              /* Espaciado alrededor del contenedor */
+  }
+  
+  .not-found {
+    text-align: center;         /* Centrar el texto */
+    color: #ff0000;             /* Color rojo para el mensaje de error */
+    font-size: 24px;            /* Tamaño de fuente */
+    margin: 20px;               /* Margen alrededor del mensaje */
+  }
+  
+  /* Estilos adicionales opcionales para las tarjetas de producto */
+  .product-card {
+    margin: 10px;              /* Espaciado entre las tarjetas */
+    width: 200px;              /* Ancho fijo de la tarjeta */
+    border: 1px solid #ccc;    /* Bordes de las tarjetas */
+    border-radius: 5px;        /* Bordes redondeados */
+    padding: 15px;             /* Espaciado interno */
+    text-align: center;        /* Centrar el contenido de la tarjeta */
+  }
