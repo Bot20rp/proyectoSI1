@@ -12,6 +12,8 @@ import { Home } from './pages/Home.jsx';
 import LoginPage from './pages/LoginPage';
 import TareasPage from './pages/TareasPage.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
+import RegisterClientPage from './pages/RegisterClientPage.jsx';
+import ProductsPage from './pages/ProductsPage.jsx';
 import { Shop } from './pages/Shop.jsx';
 import { Product } from './pages/Product.jsx';
 import { Cart } from './pages/Cart.jsx';
@@ -32,6 +34,8 @@ function App() {
             <Route path='/shop/:id' element={<Product/>}/>
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/contact' element={<Contact/>}/>
+            <Route path='/clientRegister' element={<RegisterClientPage/>}/>
+            <Route path='/products' element={<ProductsPage/>}/>
           
 
 
@@ -40,7 +44,7 @@ function App() {
 
 
             {/* rutas protegoidasasas */}
-            <Route element={<ProtectedRoute/>}>
+            <Route element={<ProtectedRoute requiredRole="admin" />}>
               <Route path='/tareas' element={<TareasPage/>}/>
             </Route>
 

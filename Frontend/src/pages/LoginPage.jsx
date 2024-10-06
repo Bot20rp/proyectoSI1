@@ -15,12 +15,6 @@ function LoginPage() {
     const onSubmit = handleSubmit(async (data) => {
       await signin(data);  // Llama a signin y espera que termine
     });
-  
-    useEffect(() => {
-      if (esAutenticado) {
-        navigate("/dashboard");  // Redirige al dashboard o donde desees
-      }
-    }, [esAutenticado, navigate]);
     
 
     useEffect(() => {

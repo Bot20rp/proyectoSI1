@@ -16,12 +16,14 @@ export const useAuth = () => {
     const [user, setUser] = useState(null);
     const [esAutenticado, setEsAutenticado] = useState(false);
     const [loading,setLoading] = useState(true);
+    const [rol,setRol] = useState(null);
   
     const signin = async (user) => {
       try {
         const res = await loginRequest(user);
         setEsAutenticado(true)
         setUser(res.data)
+        setRol(res.data.user.rol)
         console.log(res);
       } catch (error) {
         console.error(error);
@@ -36,6 +38,7 @@ export const useAuth = () => {
         if(!cookies.token){
           setEsAutenticado(false);
           setLoading(false);
+          setRol(null);
           return setUser(null)
         }
         try {
@@ -52,6 +55,7 @@ export const useAuth = () => {
         } catch (error) {
             setEsAutenticado(false);
             setLoading(false);
+            setRol(null);
             setUser(null);
         }
       }
@@ -59,7 +63,7 @@ export const useAuth = () => {
     },[])
   
     return (
-      <AuthContext.Provider value={{ signin, user,esAutenticado ,loading}}>
+      <AuthContext.Provider value={{ signin, user,esAutenticado ,loading, rol}}>
         {children}
       </AuthContext.Provider>
     );
