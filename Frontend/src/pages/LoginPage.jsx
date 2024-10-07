@@ -31,11 +31,11 @@ function LoginPage() {
           <h1>Login</h1>
           <div className='input-box'>
               <input type="email" placeholder='email' {...register('email',{required:true})}/> 
-              <FaUser  className='icon'/>
+              <FaUser  className='iconLogin'/>
           </div>
           <div className='input-box'>
               <input type="password" placeholder='Password' {...register('password',{required:true})}/>
-              <FaLock className='icon'/>
+              <FaLock className='iconLogin'/>
           </div>
           <button type="submit">Login</button>
         </form>

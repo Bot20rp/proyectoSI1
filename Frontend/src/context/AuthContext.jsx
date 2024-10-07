@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { loginRequest, verityTokenResquest } from "../api/auth";
+import { loginRequest, verityTokenResquest,obtenerRequest } from "../api/auth";
 import Cookies from 'js-cookie';
+
 
 const AuthContext = createContext();
 
@@ -17,6 +18,7 @@ export const useAuth = () => {
     const [esAutenticado, setEsAutenticado] = useState(false);
     const [loading,setLoading] = useState(true);
     const [rol,setRol] = useState(null);
+    const [tableUser,setTableUser] = useState([]);
   
     const signin = async (user) => {
       try {
@@ -24,46 +26,95 @@ export const useAuth = () => {
         setEsAutenticado(true)
         setUser(res.data)
         setRol(res.data.user.rol)
-        console.log(res);
+
+        if(res.data.user.rol === 'Administrador'|| res.data.user.rol ==='encargado'){
+          console.log("si entre")
+          cargarDatos();
+        }else{
+          console.log("Acceso denegado para cargar datos user")
+        }
       } catch (error) {
         console.error(error);
       }
     };
+
+    const cargarDatos = async () =>{
+      try {
+        const respuesta = await obtenerRequest();
+        if(respuesta.status !== 200){
+          throw new Error('Error Obtener datos')
+        }
+        const datosNuevos = respuesta.data.usuarios.map(usuarios => ({
+          id: usuarios.id, // Ajusta según la estructura de tu respuesta
+          usuario: usuarios.usuario,
+          correo: usuarios.correo,
+          telefono: usuarios.telefono,
+          genero: usuarios.genero,
+          rol: usuarios.rol // Suponiendo que `Rol` es un objeto que contiene el nombre
+        }));
+        
+
+        setTableUser(datosNuevos);
+        console.log(datosNuevos);
+
+      } catch (error) {
+        console.error('Error al obtener los datos:', error);
+      }
+    }
   
-    useEffect(() =>{
-      async function checkLogin ( ) {
+    useEffect(() => {
+      async function checkLogin() {
         const cookies = Cookies.get();
-        console.log(cookies.token);
+        const token = cookies.token;
   
-        if(!cookies.token){
+        if (!token) {
           setEsAutenticado(false);
           setLoading(false);
           setRol(null);
-          return setUser(null)
+          setUser(null);
+          return;
         }
+  
         try {
-          const res = await verityTokenResquest(cookies.token);
-          if(!res.data){
+          const res = await verityTokenResquest(token);
+          if (!res.data) {
             setEsAutenticado(false);
             setLoading(false);
             return;
           }
-          
+  
+          // Guardar datos en el estado
           setEsAutenticado(true);
           setUser(res.data);
           setLoading(false);
+          setRol(res.data.user.rol);
+  
+          // Cargar datos si el rol es "Administrador" o "encargado"
+          if (res.data.user.rol === 'Administrador' || res.data.user.rol === 'encargado') {
+             cargarDatos();
+          }
+
         } catch (error) {
-            setEsAutenticado(false);
-            setLoading(false);
-            setRol(null);
-            setUser(null);
+          console.error("Error al verificar el token:", error);
+          setEsAutenticado(false);
+          setLoading(false);
+          setRol(null);
+          setUser(null);
         }
       }
+  
       checkLogin();
-    },[])
+    }, []);
   
     return (
-      <AuthContext.Provider value={{ signin, user,esAutenticado ,loading, rol}}>
+      <AuthContext.Provider value={{ 
+        signin, 
+        user,
+        esAutenticado, 
+        loading,
+        rol,
+        tableUser
+      }}>
         {children}
       </AuthContext.Provider>
     );

@@ -100,138 +100,121 @@ function ProductsPage() {
     };
 
     return (
-        <div className="containerr">
+        <div className="containerProduct">
             <div ref={container}>
-                <div className="row">
-                    <div className="col">
-                        <div className="header-container">
-                            <h1 className="title">Productos</h1>
-                            <input 
-                                type="text" 
-                                className="input-buscar" 
-                                placeholder="Buscar por nombre"
-                                onInput={handleSearch}
-                            />
-                        </div>
-                        <button className="open" onClick={openModal}>
-                            Nuevo Producto
-                        </button>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Precio</th>
-                                    <th>Categoria</th>
-                                    <th>Volumen</th>
-                                    <th>Marca</th>
-                                    <th>Estante</th>
-                                    <th>Edit</th>
+                    <h1 className="titleProduct">Productos</h1>
+                    <input
+                        className="buscarProduct"
+                        placeholder="Buscar por nombre"
+                        onInput={handleSearch}
+                    />
+                    <button className="openProduct" onClick={openModal}>
+                        Nuevo Producto
+                    </button>
+                    <table className="tableProduct">
+                        <thead>
+                            <tr className='filasProduct'>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Categoria</th>
+                                <th>Volumen</th>
+                                <th>Marca</th>
+                                <th>Estante</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody ref={tbodyProductos}className='datosProduct'>
+                            {productos.map((prod) => (
+                                <tr key={prod.id} data-id={prod.id}>
+                                    <td>{prod.id}</td>
+                                    <td>{prod.nombre}</td>
+                                    <td>{prod.precio}</td>
+                                    <td>{prod.categoria}</td>
+                                    <td>{prod.volumen}</td>
+                                    <td>{prod.marca}</td>
+                                    <td>{prod.estante}</td>
+                                    <td className='editProduct'>
+                                        <button className='eliminarProduct'onClick={() => eliminarProducto(prod.id)}>Eliminar</button>
+                                        <button className='modificarProduct'onClick={() => modificarProducto(prod.id)}>Modificar</button>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody ref={tbodyProductos}>
-                                {productos.map((prod) => (
-                                    <tr key={prod.id} data-id={prod.id}>
-                                        <td>{prod.id}</td>
-                                        <td>{prod.nombre}</td>
-                                        <td>{prod.precio}</td>
-                                        <td>{prod.categoria}</td>
-                                        <td>{prod.volumen}</td>
-                                        <td>{prod.marca}</td>
-                                        <td>{prod.estante}</td>
-                                        <td>
-                                            <button onClick={() => eliminarProducto(prod.id)}>Eliminar</button>
-                                            <button onClick={() => modificarProducto(prod.id)}>Modificar</button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                            ))}
+                        </tbody>
+                    </table>
+               
             </div>
 
-            <div className="modalContainer" ref={modalContainer}>
-                <form className="modalE" id="modalE" onSubmit={handleSave}>
-                    <h1 className="modal_RP">Registro Producto</h1>
-                    <div className="form-control1">
+            <div className="RegistroProduct" ref={modalContainer}>
+                <form className="modaEProduct" onSubmit={handleSave}>
+                    <h1 className="modalProduct">Registro Producto</h1>
+                    <div className="form-idProduct">
                         <label>Id :</label>
-                        <input 
-                            type="text" 
-                            id="id" 
-                            name="id" 
-                            value={producto.id} 
+                        <input
+                          type='number'
+                            name="id"
+                            value={producto.id}
                             onChange={handleChange}
                             disabled={isEditing}
                         />
                     </div>
-                    <div className="form-control2">
+                    <div className="form-nombreProduct">
                         <label>Nombre :</label>
-                        <input 
-                            type="text" 
-                            id="nombre" 
-                            name="nombre" 
-                            value={producto.nombre} 
+                        <input
+                            name="nombre"
+                            value={producto.nombre}
                             onChange={handleChange}
-                        />
+                        /> <br />
                     </div>
-                    <div className="form-control3">
+                    <div className="form-precioProduct">
                         <label>Precio :</label>
-                        <input 
-                            type="number" 
-                            id="precio" 
-                            name="precio" 
-                            value={producto.precio} 
+                        <input
+                          type='number'
+                            name="precio"
+                            value={producto.precio}
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="form-control4">
+                    <div className="form-categoriaProduct">
                         <label>Categoria :</label>
                         <input 
-                            type="text" 
-                            id="categoria" 
-                            name="categoria" 
-                            value={producto.categoria} 
+                            name="categoria"
+                            value={producto.categoria}
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="form-control5">
+                    <div className="form-volumenProduct">
                         <label>Volumen :</label>
-                        <input 
-                            type="number" 
-                            id="volumen" 
-                            name="volumen" 
-                            value={producto.volumen} 
+                        <input
+                            type='number'
+                            name="volumen"
+                            value={producto.volumen}
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="form-control6">
+                    <div className="form-marcaProduct">
                         <label>Marca :</label>
-                        <input 
-                            type="text" 
-                            id="marca" 
-                            name="marca" 
-                            value={producto.marca} 
+                        <input
+                            name="marca"
+                            value={producto.marca}
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="form-control7">
+                    <div className="form-estanteProduct">
                         <label>Estante :</label>
-                        <input 
-                            type="text" 
-                            id="estante" 
-                            name="estante" 
-                            value={producto.estante} 
+                        <input
+                            name="estante"
+                            value={producto.estante}
                             onChange={handleChange}
                         />
                     </div>
                     <div className="form-control border-white">
-                        <button type="submit" className="save" >
+                        <button type="submit" className="saveProduct" >
                             {isEditing ? "Modificar" : "Guardar"}
                         </button>
                     </div>
 
-                    <button type="button" className="close" onClick={closeModal}>Cerrar</button>
+                    <button type="button" className="closeProduct" onClick={closeModal}>Cerrar</button>
                 </form>
             </div>
         </div>

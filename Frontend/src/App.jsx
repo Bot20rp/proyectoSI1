@@ -14,6 +14,9 @@ import TareasPage from './pages/TareasPage.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import RegisterClientPage from './pages/RegisterClientPage.jsx';
 import ProductsPage from './pages/ProductsPage.jsx';
+import ProveedoresPage from './pages/ProveedoresPage.jsx';
+import UsuarioPages from './pages/UsuarioPage.jsx';
+import CategoriaProductPage from './pages/CategoriaProductPage.jsx';
 import { Shop } from './pages/Shop.jsx';
 import { Product } from './pages/Product.jsx';
 import { Cart } from './pages/Cart.jsx';
@@ -36,6 +39,9 @@ function App() {
             <Route path='/contact' element={<Contact/>}/>
             <Route path='/clientRegister' element={<RegisterClientPage/>}/>
             <Route path='/products' element={<ProductsPage/>}/>
+            <Route path='/proveedorRegister' element={<ProveedoresPage/>}/>
+            <Route path='/categoria' element={<CategoriaProductPage/>}/>
+
           
 
 
@@ -44,8 +50,8 @@ function App() {
 
 
             {/* rutas protegoidasasas */}
-            <Route element={<ProtectedRoute requiredRole="admin" />}>
-              <Route path='/tareas' element={<TareasPage/>}/>
+            <Route element={<ProtectedRoute requiredRole="Administrador" />}>
+              <Route path='/usuarioGestion' element={<UsuarioPages/>}/>
             </Route>
 
           </Routes>

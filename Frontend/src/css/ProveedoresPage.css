@@ -5,12 +5,12 @@
    
 }
 
-.containerProduct{
+.containerProveedor{
     width: 100%;
     height: 100vh;
 }
 
-.RegistroProduct{
+.RegistroProveedor{
     display: flex;
     opacity: 0;
     background-color: white;
@@ -25,60 +25,51 @@
     width: 110vw;
     transition: opacity 0.3s ease;
 }
-.modaEProduct{
+.modaEProveedor{
     background-color: rgb(200, 200, 204);
     width: 500px;
-    height: 42%;
+    height: 40%;
     border-radius: 5px;
     text-align: center;
 }
 .form{
     padding: 50px;
 }
-.form-control1{ /* ID */
-    margin-top: 20px;
+.form-idProveedor{ /* ID */
+    margin-top: 30px;
 }
-.form-control2{ /* Nombre */
+.form-nombreProveedor{ /* Nombre */
     margin-right: 50px;
 }
-.form-control3{ /* Precio */
-    margin-right: 35px;
-}
-.form-control4{ /* Stock */
-    margin-right: 65px;
-}
-.form-control5{ /* Stock */
+.form-direccionProveedor{ /* direccion */
     margin-right: 55px;
 }
-.form-control6{ /* Stock */
-    margin-right: 35px;
+.form-telefonoProveedor{ /* telefono */
+    margin-right: 45px;
 }
-.form-control7{
-    margin-right: 42px;
-    margin-bottom: 10px;
-}
-.modalProduct{
+.modalProveedor{
     background-color: rgb(205, 198, 196);
 }
 
 
-.closeProduct{
+.closeProveedor{
     width: 30%; 
     color: white;
     background-color: rgb(196, 12, 12);
     position: relative;
-    top: 14px;
-    font-size: 21px;
+    top: 20px;
+    font-size: 19px;
     border-radius: 5px;
 }
 
-.openProduct{ 
+.openProveedor{ 
+    font-size: 19px;
     width: 18%;
     color: white;
     background-color: rgb(57, 128, 116);
     position: relative;
-    top: 125px;
-    left: 72%;  
+    top: 120px;
+    left: 70%;  
     border: 0;
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
@@ -96,26 +87,26 @@
     pointer-events: auto;
     opacity: 0;
 }
-.saveProduct{
+.saveProveedor{
     width: 40%;
     color: white;
     background-color: rgb(45, 122, 109);
     position: relative;
     border: 0;
-    top: 10px;
+    top: 16px;
     border-radius: 5px;
-    font-size: 21px;
+    font-size: 19px;
 }
 
-.titleProduct{
+.titleProveedor{
     background-color: white;
-    left: 15%;
+    left: 14%;
     font-size: 45px;
     position: relative;
-    top: 168px;
+    top: 170px;
 }
 
-.tableProduct{
+.tableProveedor{
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
@@ -129,19 +120,22 @@
     top: 150px;
     font-size: 18px;
   }
-  .filasProduct{
+  .filasProveedor{
     text-align: center;
-    display: tableProduct-row;
+    display: tableProveedor-row;
   }
-  .datosProduct{
+  .datosProveedor{
     background-color: rgb(126, 126, 126);
     text-align: center;
   }
+  .tdNombreProveedor{
+    width: 30%;
+  }
 
 
-.buscarProduct{
+.buscarProveedor{
     position: absolute; /* position the input absolutely */
-    top: 37%; /* position the input at 50% of the screen height */
+    top: 38%; /* position the input at 50% of the screen height */
     left: 53%; /* position the input at 50% of the screen width */
     transform: translate(-50%, -50%); /* adjust the position to center the input */
     width: 400px; /* keep the original width */
@@ -152,96 +146,66 @@
     font-size: 25px;
     color: black;
   }
+  .editProveedor{
+    width: 27%;
+  }
 
-    /* Responsiveness for smaller screens */
-@media (max-width: 768px) {
-    .modaEProduct {
-        width: 100%;
-        height: auto;
-        max-height: 90vh;
-    }
 
-    .form-control1, .form-control2, .form-control3, .form-control4, .form-control5, .form-control6, .form-control7 {
-        margin-right: 0;
-        margin-left: 0;
-    }
-
-    .openProduct {
-        left: 0;
-        top: 100px;
-        width: 100%;
-    }
-
-    .buscarProduct {
-        left: 50%;
-        width: 90%;
-    }
-
-    .tableProduct {
-        width: 90%;
-    }
-}
-
+  /* Responsiveness for smaller screens */
 @media (max-width: 480px) {
-    .titleProduct{
+    .titleProveedor{
         top: 10px;
-        left: 30%;
+        left: 25%;
         font-size: 30px;
     }
-    .buscarProduct {
-        top: 22%;
+    .buscarProveedor {
+        top: 24%;
         left: 50%;
         width: 80%;
         font-size: 20px;
     }
-    .tableProduct {
+    .tableProveedor {
         left: 3px;
         font-size: 8px;
         width: 98%;
     }
-    .modaEProduct {
-        width: 100%;
-        height: auto;
+    .modaEProveedor {
+        width: 80%;
         max-height: 90vh;
     }
 
-    .form-idProduct{ /* ID */
+    .form-idProveedor{ /* ID */
         margin-top: 10px;
     }
-    .form-nombreProduct{ /* Nombre */
+    .form-nombreProveedor{ /* Nombre */
         margin-right: 45px;
     }
-    .form-precioProduct{ /* Precio */
-        margin-right: 35px;
-    }
-    .form-categoriaProduct{ /* categoria */
-        margin-right: 65px;
-    }
-    .form-volumenProduct{ /* volumen */
+    .form-direccionProveedor{ /* direccin */
         margin-right: 55px;
     }
-    .form-marcaProduct{ /* Marca */
-        margin-right: 35px;
+    .form-telefonoProveedor{ /* categoria */
+        margin-right: 45px;
     }
-    .form-estanteProduct{ /*estante */
-        margin-right: 42px;
-        margin-bottom: 10px;
-    }
-    .saveProduct,.closeProduct{
-        width: 40%;
+    .saveProveedor,.closeProveedor{
+        width: 30%;
+        font-size: 12px;
         color: white;
         background-color: rgb(45, 122, 109);
         position: relative;
         border: 0;
-        top: -5px;
+        top: 20px;
         border-radius: 5px;
     }
-    .closeProduct{
+    .saveProveedor{
+        width: 40%;
+        top: 15px;
+    }
+    .closeProveedor{
         background-color: rgb(196, 12, 12)
         
     }
-    .openProduct{ 
-        top: 70px;
+    .openProveedor{ 
+        top:75px;
         width: 60%;
         left: 18%;
         color: white;
@@ -251,12 +215,12 @@
         box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
         font-size: 15px;    
     }
-    .eliminarProduct,.modificarProduct{
+    .eliminarProveedor,.modificarProveedor{
         font-size: 8px;
         padding: 2px;
     }
-    .editProduct{
+    .editProveedor{
         width: 23%;
     }
-    
+
 }

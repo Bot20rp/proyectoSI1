@@ -1,0 +1,18 @@
+[
+    {
+        "id": 221075011,
+        "usuario": "Gabriel Rojas",
+        "correo": "gabriel1@gmail.com",
+        "telefono": "78114590",
+        "genero": "Masculino",
+        "rol": "Cliente"
+    },
+    {
+        "id": 221075012,
+        "usuario": "Andrea Lopez",
+        "correo": "andrea2@gmail.com",
+        "telefono": "71234567",
+        "genero": "Femenino",
+        "rol": "Administrador"
+    }
+]

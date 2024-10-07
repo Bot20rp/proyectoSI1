@@ -1,15 +1,99 @@
-
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
 .contenedorClient{
+    display: flex;
     width: 100%;
-    min-height: 100vh;
+    min-height: 80vh;
     padding: 20px;
-}
-
-.formRegister {
-    width: 100%;
-    height: 100vh;
-    text-align: center;
-    align-content: center;
+    /* align-content: center ; */
     justify-content: center;
-
+    align-items: center;
 }
+
+
+.formRegisterClient {
+    display: flex;
+    flex-direction: column;
+    width: 1500px;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.8);;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 20px;
+    /* justify-content: center; */
+    text-align: center;
+    padding: 30px 40px;
+    align-items: center;
+    
+}
+
+.inputClient {
+    width: 100%; /* Ajusta el ancho al 100% del contenedor padre */
+    max-width: 400px; /* Si quieres limitar el ancho máximo */
+    padding: 10px; /* Añade padding para dar espacio interno */
+    margin: 15px; /* Espacio entre los inputs */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    font-size: 16px; /* Tamaño de fuente para que sea consistente */
+    background-color: lavender;
+    border-radius: 10px;
+    
+}
+
+#titleRegisterClient{
+    height: 20vh;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.client {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Centra horizontalmente los elementos */
+    align-items: center; /* Centra verticalmente los elementos */
+    gap: 20px; /* Añade espacio entre los elementos */
+    flex-wrap: wrap; /* Permite que los elementos bajen a una nueva línea si no hay espacio */
+    margin: 10px
+}
+
+@media (max-width: 980px){
+    .formRegisterClient {
+        display: flex;
+        flex-direction: column;
+        width: 1500px;
+        height: 820px;
+        background: rgba(0, 0, 0, 0.5);;
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, .2);
+        border-radius: 20px;
+        /* justify-content: center; */
+        text-align: center;
+        padding: 30px 40px;
+        align-items: center;
+        
+    }
+    .client {
+        display: flex;
+        flex-direction: row;
+        justify-content: center; /* Centra horizontalmente los elementos */
+        align-items: center; /* Centra verticalmente los elementos */
+        gap: 5px; /* Añade espacio entre los elementos */
+        flex-wrap: wrap; /* Permite que los elementos bajen a una nueva línea si no hay espacio */
+        margin: 5px
+    }
+}
+
+.successMessage {
+    color: green;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+
+

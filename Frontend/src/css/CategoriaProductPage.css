@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+*{
+    font-family: 'Poppins',sans-serif;
+
+}
+.containerCategoriaProduct{
+    width: 100%;
+    height: 100vh;
+}
+.modalCategoriaProduct,.modalSubCategoriaProduct{
+    display: flex;
+    opacity: 0;
+    background-color: white;
+    align-items: center;
+    margin: auto;
+    background: rgb(255, 255, 255);
+    justify-content: center;
+    position: fixed;
+    pointer-events: none;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+}
+.modalECategoriaProduct,.modalESubCategoriaProduct{
+    background-color: rgb(203, 203, 207);
+    width: 500px;
+    max-width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.TitleRegisterCategoria,.TitleRegisterSubCategoria{
+    background-color: rgb(217, 217, 217);
+}
+
+
+
+.closeRegisterSubCategoria,.closeRegisterCategoria{
+    width: 25%; 
+    color: white;
+    background-color: rgb(196, 12, 12);
+    position: relative;
+    top: 4px;
+    font-size: 17px;
+    border-radius: 10px;
+}
+.saveSubCategoria,.saveCategoria{
+    width: 30%;
+    font-size: 17px;
+    color: white;
+    background-color: rgb(45, 122, 109);
+    position: relative;
+    border: 0;
+  
+    border-radius: 10px;
+}
+.openRegisterSubCategoria,.openRegisterCategoria{ 
+    width: 18%;
+    color: white;
+    background-color: rgb(43, 180, 157);
+    position: relative;
+    top: 110px;
+    left: 58%;
+    font-size: 19px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.show2 {
+    pointer-events: none;
+    opacity: 0;
+}
+
+
+
+
+.titleCategoriaPage{
+    background-color: white;
+    left: -300px;
+    text-align: center;
+    position: relative;
+    top: 108px;
+}
+
+.tableSubCategoria{
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    border-collapse: collapse;
+    width: 44%;
+    color:white;
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+    position: relative;
+    left: 150px;
+    top: 120px;
+  }
+
+
+.buscarCategoria {
+    position: absolute; 
+    top: 255px; 
+    left: 32%; 
+    transform: translate(-50%, -50%); 
+    width: 400px; 
+    background-color: rgb(232, 230, 230); 
+    text-align: center;
+    opacity: 1;
+  }
+.tbody-subcategoria{
+    background-color: rgb(126, 126, 126);
+    text-align: center;
+  }
+.NameSubcategoria{
+    width: 35%;
+}
+
+.tableCategoria{
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    border-collapse: collapse;
+    width: 37%;
+    color:white;
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+    position: absolute;
+    left: 58%;
+    top: 38%;
+  }
+  .tbody-categoria{
+    background-color: rgb(126, 126, 126);
+    text-align: center;
+  }
+  .form-control1, .form-control2, .form-control3 {
+    margin: 10px;
+    border-radius: 5px;
+  }
+  .formSubCategoria,#categoria,.formCategoria{
+    text-align: center;
+    border-radius: 10px;
+  }
+  @media (max-width: 480px) {
+    /* Adjust font size and family for smaller screens */
+    * {
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+    }
+   .containerCategoriaProduct {
+      width: 100%;
+      height: 100vh;
+    }
+     .modalECategoriaProduct, .modalESubCategoriaProduct {
+      width: 90%;
+      height: 280px;
+    text-align: center;
+    align-items: center;
+    }
+    .titleCategoriaPage{
+        left: 0%;
+        top: 0%;
+    }
+    /* Adjust form control margins */
+    .form-control1, .form-control2, .form-control3 {
+      margin: 10px;
+    }
+  
+    /* Adjust button widths and positions */
+    .closeRegisterSubCategoria, .closeRegisterCategoria {
+      width: 40%;
+    }
+    .saveSubCategoria, .saveCategoria {
+      width: 50%;
+    }
+    .openRegisterSubCategoria, .openRegisterCategoria {
+      width: 70%;
+      top: 60px;
+      left: 15%;
+      margin: 5px;
+    }
+  
+    /* Adjust table widths and positions */
+    .tableSubCategoria, .tableCategoria {
+      width: 96%;
+      left: 2%;
+        top: 300px;
+    }
+  
+    /* Adjust buscarCategoria position and width */
+    .buscarCategoria {
+      top: 140px;
+      left: 50%;
+      width: 300px;
+    }
+  
+    /* Adjust NameSubcategoria width */
+    .NameSubcategoria {
+      width: 50%;
+    }
+   .editCategoria{
+        width: 50%;
+    }
+    .editSubCategoria{
+        width: 60%;
+    }
+    .btn-eliminar,.btn-modificar{
+        width: 45%;
+        text-align: center;
+        font-size: 10px;
+    }
+    .btn-modificarCategoria,.btn-eliminarCategoria{
+        width: 40%;
+        text-align: center;
+        font-size: 11px;
+    }
+  }
