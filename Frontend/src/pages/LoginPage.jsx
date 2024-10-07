@@ -19,7 +19,7 @@ function LoginPage() {
 
     useEffect(() => {
       if (esAutenticado) {
-        navigate("/tareas");  // Redirige al dashboard o donde desees
+        navigate("/usuarioGestion");  // Redirige al dashboard o donde desees
       }
     }, [esAutenticado, navigate]);
   
