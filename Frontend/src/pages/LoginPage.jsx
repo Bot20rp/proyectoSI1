@@ -19,7 +19,8 @@ function LoginPage() {
 
     useEffect(() => {
       if (esAutenticado) {
-        navigate("/usuarioGestion");  // Redirige al dashboard o donde desees
+        navigate("/dasboard"); /* redirige al dasboard */
+       /*  navigate("/usuarioGestion"); */  // Redirige al dashboard o donde desees
       }
     }, [esAutenticado, navigate]);
   

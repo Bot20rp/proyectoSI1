@@ -12,16 +12,19 @@ import { Home } from './pages/Home.jsx';
 import LoginPage from './pages/LoginPage';
 import TareasPage from './pages/TareasPage.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
+import ProtecComponente from './ProtecComponente.jsx';
+
+/* 
 import RegisterClientPage from './pages/RegisterClientPage.jsx';
 import ProductsPage from './pages/ProductsPage.jsx';
 import ProveedoresPage from './pages/ProveedoresPage.jsx';
-import UsuarioPages from './pages/UsuarioPage.jsx';
-import CategoriaProductPage from './pages/CategoriaProductPage.jsx';
+import CategoriaProductPage from './pages/CategoriaProductPage.jsx'; */
 import { Shop } from './pages/Shop.jsx';
 import { Product } from './pages/Product.jsx';
 import { Cart } from './pages/Cart.jsx';
 import { Contact } from './pages/Contact.jsx';
-
+/* componente protegisdo */
+import {Homed} from './components/HomeD/Homed.jsx'
 /* ------------------------------------------------------------ */
 
 function App() {
@@ -37,23 +40,30 @@ function App() {
             <Route path='/shop/:id' element={<Product/>}/>
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/contact' element={<Contact/>}/>
-            <Route path='/clientRegister' element={<RegisterClientPage/>}/>
-            <Route path='/products' element={<ProductsPage/>}/>
-            <Route path='/proveedorRegister' element={<ProveedoresPage/>}/>
-            <Route path='/categoria' element={<CategoriaProductPage/>}/>
 
           
+{/* dasboard */}
+     {/*        <Route path='/categoria' element={<CategoriaProductPage/>}/>
+            <Route path='/products' element={<ProductsPage/>}/>
+
+            <Route path='/proveedorRegister' element={<ProveedoresPage/>}/>
+
+            <Route path='/clientRegister' element={<RegisterClientPage/>}/> */}
 
 
 
-
-
-
+            {/* componente protegisdiooo */}
+            <Route
+        /*    requiredRole="Administrador" */
+              path="/dasboard/*"
+              
+              element={<ProtecComponente component={Homed}/>}
+            />
             {/* rutas protegoidasasas */}
-            <Route element={<ProtectedRoute requiredRole="Administrador" />}>
+           {/*  <Route element={<ProtectedRoute requiredRole="Administrador" />}>
               <Route path='/usuarioGestion' element={<UsuarioPages/>}/>
             </Route>
-
+ */}
           </Routes>
           <Footer/>
       </BrowserRouter>

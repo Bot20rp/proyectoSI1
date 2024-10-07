@@ -1,0 +1,16 @@
+
+
+  .containe12 {
+    display: grid;
+    grid-template-columns: 90px auto; /* Ancho del sidebar */
+    background: #f1ebeb;
+    transition: all 0.3s;
+}
+
+.containe12.active12 {
+    grid-template-columns: 300px auto; /* Ancho del sidebar cuando está abierto */
+}
+
+body {
+    color: black;
+}

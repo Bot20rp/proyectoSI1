@@ -14,91 +14,101 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const ModSidebaropen = () => {
     setSidebarOpen(!sidebarOpen);
   };
+
   return (
-    <>
-      <div className={`sidebar-container  ${sidebarOpen ? "open" : "closed"}`}>
-        <button className="sidebar-button" onClick={ModSidebaropen}>
-          <AiOutlineLeft />
-        </button>
-        <div className="logo-content">
-          <div className="img-content">
-            <img src={logo} alt="logo_licoreria_bunker" />
-          </div>
-          <h2>{sidebarOpen && "holaaa"}</h2>
+    <div className={`sidebar-container ${sidebarOpen ? "open" : "closed"}`}>
+      <button className="sidebar-button" onClick={ModSidebaropen}>
+        <AiOutlineLeft />
+      </button>
+      <div className="logo-content">
+        <div className="img-content">
+        {/*   <img src={logo} alt="logo_licoreria_bunker" /> */}
         </div>
-        {enlaceprincipal.map(({ label, icon, to }) => {
-          <div className="link-container" key={label}>
-            <NavLink
-              to={to}
-              className={({ isActive }) => `links${isActive ? `active` : ``}`}
-            >
-              <div className="link-icon"> {icon}</div>
-              {sidebarOpen && <span>{label}</span>}
-            </NavLink>
-          </div>;
-        })}
-
-        <div className="divider"></div>
-        {enlacesecundario.map(({ label, icon, to }) => (
-          <div className="link-container" key={label}>
-            <NavLink
-              to={to}
-              className={({ isActive }) => `links${isActive ? ` active` : ``}`}
-            >
-              <div className="link-icon">{icon}</div>
-              {sidebarOpen && <span>{label}</span>}
-            </NavLink>
-          </div>
-        ))}
-        {/* esto es una linea que divide , lo podremos usar mas adelante si lo queremos hacer por permiso */}
-        <div className="divider"></div>
-
-        <div className="divider"></div>
+        <h2>{sidebarOpen ? "" : ""}</h2>
       </div>
-    </>
+
+      {/* Mapeo de enlaces principales */}
+      {enlaceprincipal.map(({ label, icon, to }) => (
+        <div className="link-container" key={label}>
+          <NavLink
+            to={to}
+            className={({ isActive }) => `links${isActive ? " active" : ""}`}
+          >
+            <div className="link-icon">{icon}</div>
+            {sidebarOpen && <span>{label}</span>}
+          </NavLink>
+        </div>
+      ))}
+
+      <div className="divider"></div>
+
+      {/* Mapeo de enlaces secundarios */}
+      {enlacesecundario.map(({ label, icon, to }) => (
+        <div className="link-container" key={label}>
+          <NavLink
+            to={to}
+            className={({ isActive }) => `links${isActive ? " active" : ""}`}
+          >
+            <div className="link-icon">{icon}</div>
+            {sidebarOpen && <span>{label}</span>}
+          </NavLink>
+        </div>
+      ))}
+
+      <div className="divider"></div>
+    </div>
   );
 };
+
+
 const enlaceprincipal = [
   {
     label: "Home",
     icon: <AiOutlineHome />,
-    to: "/",
+    to: "/dasboard/homeda",
   },
   {
     label: "Usuarios",
     icon: <MdOutlineAnalytics />,
-    to: "/users",
+    to: "/dasboard/usuarioGestion",
   },
   {
-    label: "empleados",
+    label: "Empleados",
     icon: <AiOutlineApartment />,
-    to: "/empleados",
+    to: "/dasboard/empleados",
   },
   {
-    label: "clientes",
+    label: "Clientes",
     icon: <MdOutlineAnalytics />,
-    to: "/clientes",
+    to: "/dasboard/clientRegister",
   },
   {
-    label: "proveedores",
+    label: "Categorias ",
     icon: <MdOutlineAnalytics />,
-    to: "/proveedores",
+    to: "/dasboard/categoriaproducto",
+  },
+ 
+  {
+    label: "productos",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/products",
   },
   {
-    label: "Reportes",
+    label: "Proveedores",
     icon: <MdOutlineAnalytics />,
-    to: "/reportes",
+    to: "/dasboard/proveedorRegister",
   },
 ];
+
 const enlacesecundario = [
   {
     label: "Configuración",
     icon: <AiOutlineSetting />,
-    to: "/null",
+    to: "/dasboard/null",
   },
   {
     label: "Salir",
     icon: <MdLogout />,
-    to: "/null",
+    to: "/dasboard/null",
   },
 ];
