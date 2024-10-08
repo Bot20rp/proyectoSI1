@@ -1,7 +1,8 @@
 import { useAuth } from '../context/AuthContext';
 import '../css/UsuarioPage.css';
 import { useState } from 'react';
-  export const UsuarioPage=() =>{
+
+function UsuarioPages() {
   const {tableUser} = useAuth();
   const [datos, setDatos] = useState([]);
   const [mostrarEliminar, setMostrarEliminar] = useState(false);
@@ -183,3 +184,5 @@ import { useState } from 'react';
     </div>
   );
 }
+
+export default UsuarioPages;

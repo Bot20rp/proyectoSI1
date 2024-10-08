@@ -12,7 +12,7 @@ import { Outlet } from "react-router-dom";
 import RegisterClientPage from '../../pages/RegisterClientPage'
 import ProductsPage from '../../pages/ProductsPage'
 import ProveedoresPage from '../../pages/ProveedoresPage'
-import {UsuarioPage} from '../../pages/UsuarioPage'
+import UsuarioPage from '../../pages/UsuarioPage'
 import CategoriaProductPage from '../../pages/CategoriaProductPage' 
 import "./homed.css";
 

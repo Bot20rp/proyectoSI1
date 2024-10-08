@@ -22,7 +22,7 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       </button>
       <div className="logo-content">
         <div className="img-content">
-        {/*   <img src={logo} alt="logo_licoreria_bunker" /> */}
+          {/*   <img src={logo} alt="logo_licoreria_bunker" /> */}
         </div>
         <h2>{sidebarOpen ? "" : ""}</h2>
       </div>
@@ -55,11 +55,16 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         </div>
       ))}
 
-      <div className="divider"></div>
+      <div className="divider">
+        <div className="divider">
+          <div className="divider"></div>
+          <div className="divider"></div>
+          <div className="divider"></div>
+        </div>
+      </div>
     </div>
   );
 };
-
 
 const enlaceprincipal = [
   {
@@ -87,7 +92,7 @@ const enlaceprincipal = [
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/categoriaproducto",
   },
- 
+
   {
     label: "productos",
     icon: <MdOutlineAnalytics />,
