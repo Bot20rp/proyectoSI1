@@ -2,6 +2,7 @@ import Usuario from './Usuario.js';
 import Documento from './Documento.js';
 import Telefono from './Telefono.js';
 import DetalleDocumento from './DetalleDocumento.js';
+import Empleado from './Empleado.js'; 
 
 
 // Relación entre Usuario y DetalleDocumento
@@ -16,5 +17,13 @@ DetalleDocumento.belongsTo(Documento, { foreignKey: 'DocumentoID', as: 'Document
 Usuario.hasMany(Telefono, { foreignKey: 'UsuarioID', as: 'Telefonos' });
 Telefono.belongsTo(Usuario, { foreignKey: 'UsuarioID', as: 'Usuario' });
 
+Usuario.hasOne(Empleado, {
+    foreignKey: 'EmpleadoID',  // Debe ser 'EmpleadoID' en lugar de 'UsuarioID'
+    as: 'Empleado',
+});
+Empleado.belongsTo(Usuario, {
+    foreignKey: 'EmpleadoID',  // Debe ser 'EmpleadoID' aquí también
+    targetKey: 'UsuarioID', // Asegúrate de que sea 'UsuarioID'
+});
 
-export {Usuario, Documento, Telefono, DetalleDocumento};
+export {Usuario, Documento, Telefono, DetalleDocumento,Empleado};

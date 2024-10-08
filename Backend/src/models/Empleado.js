@@ -13,11 +13,11 @@ const empleado =db.define('empleado',{
         type:DataTypes.FLOAT,
         allowNull:false
     },
-    HoraInicio:{
+    HorarioInicio:{
         type:DataTypes.TIME,
         allowNull:false
     },
-    HoraFin:{
+    HorarioFin:{
         type:DataTypes.TIME,
         allowNull:false
     }
