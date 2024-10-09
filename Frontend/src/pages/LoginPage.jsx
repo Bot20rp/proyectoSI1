@@ -19,8 +19,7 @@ function LoginPage() {
 
     useEffect(() => {
       if (esAutenticado) {
-        navigate("/dasboard"); /* redirige al dasboard */
-       /*  navigate("/usuarioGestion"); */  // Redirige al dashboard o donde desees
+        navigate("/dasboard/homeda"); /* redirige al dasboard */
       }
     }, [esAutenticado, navigate]);
   

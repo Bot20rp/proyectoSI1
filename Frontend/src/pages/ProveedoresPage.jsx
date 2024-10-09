@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
-import '../css/ProveedoresPage.css'
+import React, { useRef, useState } from 'react';
+import '../css/ProveedoresPage.css';
 
 function ProveedoresPage() {
     const modalContainer = useRef(null);
@@ -96,41 +96,40 @@ function ProveedoresPage() {
     return (
         <div className="containerProveedor">
             <div ref={container}>
-                    <h1 className="titleProveedor">Proveedores</h1>
-                    <input
-                        className="buscarProveedor"
-                        placeholder="Buscar por nombre"
-                        onInput={handleSearch}
-                    />
-                    <button className="openProveedor" onClick={openModal}>
-                        Nuevo Proveedor
-                    </button>
-                    <table className="tableProveedor">
-                        <thead>
-                            <tr className='filasProveedor'>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Direccion</th>
-                                <th>Telefono</th>          
-                                <th>Edit</th>
+                <h1 className="titleProveedor">Proveedores</h1>
+                <input
+                    className="buscarProveedor"
+                    placeholder="Buscar por nombre"
+                    onInput={handleSearch}
+                />
+                <button className="openProveedor" onClick={() => { resetForm(); openModal(); }}>
+                    Nuevo Proveedor
+                </button>
+                <table className="tableProveedor">
+                    <thead>
+                        <tr className='filasProveedor'>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody ref={tbodyproveedors} className='datosProveedor'>
+                        {proveedors.map((prod) => (
+                            <tr key={prod.id} data-id={prod.id}>
+                                <td>{prod.id}</td>
+                                <td className='tdNombreProveedor'>{prod.nombre}</td>
+                                <td>{prod.direccion}</td>
+                                <td>{prod.telefono}</td>
+                                <td className='editProveedor'>
+                                    <button className='eliminarProveedor' onClick={() => eliminarproveedor(prod.id)}>Eliminar</button>
+                                    <button className='modificarProveedor' onClick={() => modificarproveedor(prod.id)}>Modificar</button>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody ref={tbodyproveedors}className='datosProveedor'>
-                            {proveedors.map((prod) => (
-                                <tr key={prod.id} data-id={prod.id}>
-                                    <td>{prod.id}</td>
-                                    <td className='tdNombreProveedor'>{prod.nombre}</td>
-                                    <td>{prod.direccion}</td>
-                                    <td>{prod.telefono}</td>
-                                    <td className='editProveedor'>
-                                        <button className='eliminarProveedor'onClick={() => eliminarproveedor(prod.id)}>Eliminar</button>
-                                        <button className='modificarProveedor'onClick={() => modificarproveedor(prod.id)}>Modificar</button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-               
+                        ))}
+                    </tbody>
+                </table>
             </div>
 
             <div className="RegistroProveedor" ref={modalContainer}>
@@ -139,7 +138,7 @@ function ProveedoresPage() {
                     <div className="form-idProveedor">
                         <label>Id :</label>
                         <input
-                          type='number'
+                            type='number'
                             name="id"
                             value={proveedor.id}
                             onChange={handleChange}
@@ -152,7 +151,7 @@ function ProveedoresPage() {
                             name="nombre"
                             value={proveedor.nombre}
                             onChange={handleChange}
-                        /> <br />
+                        />
                     </div>
                     <div className="form-direccionProveedor">
                         <label>Direccion :</label>
@@ -164,14 +163,14 @@ function ProveedoresPage() {
                     </div>
                     <div className="form-telefonoProveedor">
                         <label>Telefono:</label>
-                        <input 
+                        <input
                             name="telefono"
                             value={proveedor.telefono}
                             onChange={handleChange}
                         />
                     </div>
                     <div className="form-control border-white">
-                        <button type="submit" className="saveProveedor" >
+                        <button type="submit" className="saveProveedor">
                             {isEditing ? "Modificar" : "Guardar"}
                         </button>
                     </div>

@@ -1,10 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react';
-import '../css/ProductsPage.css'
+import React, { useRef, useState } from 'react';
+import '../css/ProductsPage.css';
 
 function ProductsPage() {
-    const modalContainer = useRef(null);
-    const container = useRef(null);
     const tbodyProductos = useRef(null);
+
     const [producto, setProducto] = useState({
         id: '',
         nombre: '',
@@ -14,8 +13,11 @@ function ProductsPage() {
         marca: '',
         estante: ''
     });
+
     const [productos, setProductos] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false); // Nuevo estado para visibilidad del modal
+    const [mostrarActualizar, setMostrarActualizar] = useState(false);
 
     // Manejar los cambios en el formulario
     const handleChange = (e) => {
@@ -31,23 +33,18 @@ function ProductsPage() {
         const filas = tbodyProductos.current.querySelectorAll('tr');
         filas.forEach(fila => {
             const nombre = fila.cells[1].textContent.toLowerCase();
-            if (nombre.indexOf(textoBuscar) !== -1) {
-                fila.style.display = '';
-            } else {
-                fila.style.display = 'none';
-            }
+            fila.style.display = nombre.includes(textoBuscar) ? '' : 'none';
         });
     };
 
-    // Abrir y cerrar modal
+    // Abrir el modal
     const openModal = () => {
-        modalContainer.current.classList.add('show');
-        container.current.classList.add('show2');
+        setModalVisible(true); // Muestra el modal
     };
 
+    // Cerrar el modal
     const closeModal = () => {
-        modalContainer.current.classList.remove('show');
-        container.current.classList.remove('show2');
+        setModalVisible(false); // Oculta el modal
         resetForm();
     };
 
@@ -99,21 +96,35 @@ function ProductsPage() {
         }
     };
 
+    // Manejar cambios en el formulario de actualización
+    const manejarCambio = (e) => {
+        setProducto({
+            ...producto,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    // Confirmar actualización
+    const confirmarActualizar = () => {
+        setMostrarActualizar(false);
+    };
+
     return (
-        <div className="containerProduct">
-            <div ref={container}>
-                    <h1 className="titleProduct">Productos</h1>
-                    <input
-                        className="buscarProduct"
-                        placeholder="Buscar por nombre"
-                        onInput={handleSearch}
-                    />
-                    <button className="openProduct" onClick={openModal}>
-                        Nuevo Producto
-                    </button>
+        <div className="containerProduct" >
+            <div >
+                <h1 className="titleProduct">Productos</h1>
+                <input
+                    className="buscarProduct"
+                    placeholder="Buscar por nombre"
+                    onInput={handleSearch}
+                />
+                <button className="openProduct" onClick={openModal}>
+                    Nuevo Producto
+                </button>
+                <div className="tableContainer">
                     <table className="tableProduct">
                         <thead>
-                            <tr className='filasProduct'>
+                            <tr className="filasProduct">
                                 <th>Id</th>
                                 <th>Nombre</th>
                                 <th>Precio</th>
@@ -121,10 +132,10 @@ function ProductsPage() {
                                 <th>Volumen</th>
                                 <th>Marca</th>
                                 <th>Estante</th>
-                                <th>Edit</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody ref={tbodyProductos}className='datosProduct'>
+                        <tbody ref={tbodyProductos} className="datosProduct">
                             {productos.map((prod) => (
                                 <tr key={prod.id} data-id={prod.id}>
                                     <td>{prod.id}</td>
@@ -134,89 +145,76 @@ function ProductsPage() {
                                     <td>{prod.volumen}</td>
                                     <td>{prod.marca}</td>
                                     <td>{prod.estante}</td>
-                                    <td className='editProduct'>
-                                        <button className='eliminarProduct'onClick={() => eliminarProducto(prod.id)}>Eliminar</button>
-                                        <button className='modificarProduct'onClick={() => modificarProducto(prod.id)}>Modificar</button>
+                                    <td className="editProduct">
+                                        <button className="eliminarProduct" onClick={() => eliminarProducto(prod.id)}>Eliminar</button>
+                                        <button className="modificarProduct" onClick={() => modificarProducto(prod.id)}>Modificar</button>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-               
+                </div>
+
+
+                {/* Mostrar el modal cuando modalVisible sea true */}
+                {modalVisible && (
+                    <div className="modal">
+                        <div className="modal-content">
+                            <h3>{isEditing ? "Modificar Producto" : "Nuevo Producto"}</h3>
+                            <input
+                                name="id"
+                                value={producto.id}
+                                onChange={handleChange}
+                                placeholder="id de producto"
+                            />
+                            <input
+                                name="nombre"
+                                value={producto.nombre}
+                                onChange={handleChange}
+                                placeholder="Nombre de producto"
+                            />
+                            <input
+                                name="precio"
+                                value={producto.precio}
+                                onChange={handleChange}
+                                placeholder="Precio"
+                            />
+                            <input
+                                name="categoria"
+                                value={producto.categoria}
+                                onChange={handleChange}
+                                placeholder="Categoría"
+                            />
+                            <input
+                                name="volumen"
+                                value={producto.volumen}
+                                onChange={handleChange}
+                                placeholder="Volumen"
+                            />
+                            <input
+                                name="marca"
+                                value={producto.marca}
+                                onChange={handleChange}
+                                placeholder="Marca"
+                            />
+                            <input
+                                name="estante"
+                                value={producto.estante}
+                                onChange={handleChange}
+                                placeholder="Estante"
+                            />
+                            <button className="btn" onClick={handleSave}>
+                                {isEditing ? "Modificar" : "Guardar"}
+                            </button>
+                            <button className="btn" onClick={closeModal}>
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                )}
+
             </div>
 
-            <div className="RegistroProduct" ref={modalContainer}>
-                <form className="modaEProduct" onSubmit={handleSave}>
-                    <h1 className="modalProduct">Registro Producto</h1>
-                    <div className="form-idProduct">
-                        <label>Id :</label>
-                        <input
-                          type='number'
-                            name="id"
-                            value={producto.id}
-                            onChange={handleChange}
-                            disabled={isEditing}
-                        />
-                    </div>
-                    <div className="form-nombreProduct">
-                        <label>Nombre :</label>
-                        <input
-                            name="nombre"
-                            value={producto.nombre}
-                            onChange={handleChange}
-                        /> <br />
-                    </div>
-                    <div className="form-precioProduct">
-                        <label>Precio :</label>
-                        <input
-                          type='number'
-                            name="precio"
-                            value={producto.precio}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-categoriaProduct">
-                        <label>Categoria :</label>
-                        <input 
-                            name="categoria"
-                            value={producto.categoria}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-volumenProduct">
-                        <label>Volumen :</label>
-                        <input
-                            type='number'
-                            name="volumen"
-                            value={producto.volumen}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-marcaProduct">
-                        <label>Marca :</label>
-                        <input
-                            name="marca"
-                            value={producto.marca}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-estanteProduct">
-                        <label>Estante :</label>
-                        <input
-                            name="estante"
-                            value={producto.estante}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-control border-white">
-                        <button type="submit" className="saveProduct" >
-                            {isEditing ? "Modificar" : "Guardar"}
-                        </button>
-                    </div>
-
-                    <button type="button" className="closeProduct" onClick={closeModal}>Cerrar</button>
-                </form>
-            </div>
         </div>
     );
 }

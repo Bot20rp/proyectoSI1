@@ -1,7 +1,12 @@
 import React from 'react'
+import { useAuth } from '../context/AuthContext'
 
 export const HomeDas = () => {
+
+  const {user} = useAuth();
+  console.log(user)
+
   return (
-    <div>HomeDas</div>
+    <h1>Bienvenido {user.user.rol} : {user.user.email}</h1>
   )
 }

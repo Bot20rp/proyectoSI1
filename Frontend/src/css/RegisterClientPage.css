@@ -1,49 +1,51 @@
-*{
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+* {
     padding: 0;
     margin: 0;
     border: 0;
+    box-sizing: border-box; /* Asegura que el padding y el border no afecten el ancho total */
+    font-family: 'Poppins', sans-serif; /* Aplica la fuente Poppins */
 }
-.contenedorClient{
+.contenedorClient {
     display: flex;
-    width: 100%;
+    width: 80%;
     min-height: 80vh;
     padding: 20px;
-    /* align-content: center ; */
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centra el contenedor */
+    align-items: center; /* Centra el contenedor verticalmente */
 }
-
 
 .formRegisterClient {
     display: flex;
     flex-direction: column;
-    width: 1500px;
-    height: 500px;
-    background: rgba(0, 0, 0, 0.8);;
+    width: 100%; /* Ajusta el ancho al 100% del contenedor padre */
+    max-width: 1100px; /* Limita el ancho máximo */
+    height: auto; /* Ajusta la altura según el contenido */
+    background: rgba(12, 11, 10, 0.5); /* Color de fondo más sólido */
     color: #fff;
-    border: 2px solid rgba(255, 255, 255, .2);
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Color de borde más visible */
     border-radius: 20px;
-    /* justify-content: center; */
     text-align: center;
     padding: 30px 40px;
     align-items: center;
-    
 }
 
 .inputClient {
     width: 100%; /* Ajusta el ancho al 100% del contenedor padre */
-    max-width: 400px; /* Si quieres limitar el ancho máximo */
+    max-width: 400px; /* Limita el ancho máximo */
     padding: 10px; /* Añade padding para dar espacio interno */
     margin: 15px; /* Espacio entre los inputs */
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
     font-size: 16px; /* Tamaño de fuente para que sea consistente */
-    background-color: lavender;
+    background-color: #e6e6fa; /* Color de fondo más suave */
     border-radius: 10px;
-    
+    border: 1px solid #ccc; /* Borde más definido */
 }
 
-#titleRegisterClient{
+#titleRegisterClient {
     height: 20vh;
+    font-size: 2em; /* Aumenta el tamaño del título */
+    color: #ffffff; /* Color del título */
 }
 
 .inputWrapper {
@@ -59,33 +61,21 @@
     align-items: center; /* Centra verticalmente los elementos */
     gap: 20px; /* Añade espacio entre los elementos */
     flex-wrap: wrap; /* Permite que los elementos bajen a una nueva línea si no hay espacio */
-    margin: 10px
+    margin: 10px;
 }
 
-@media (max-width: 980px){
+@media (max-width: 980px) {
     .formRegisterClient {
-        display: flex;
-        flex-direction: column;
-        width: 1500px;
-        height: 820px;
-        background: rgba(0, 0, 0, 0.5);;
-        color: #fff;
-        border: 2px solid rgba(255, 255, 255, .2);
-        border-radius: 20px;
-        /* justify-content: center; */
-        text-align: center;
-        padding: 30px 40px;
-        align-items: center;
-        
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        width: 90%; /* Ajusta el ancho para pantallas más pequeñas */
+        height: auto; /* Ajusta la altura según el contenido */
+        background: rgba(0, 0, 0, 0.5); /* Color de fondo más oscuro */
+        padding: 20px; /* Reduce el padding */
     }
+
     .client {
-        display: flex;
-        flex-direction: row;
-        justify-content: center; /* Centra horizontalmente los elementos */
-        align-items: center; /* Centra verticalmente los elementos */
-        gap: 5px; /* Añade espacio entre los elementos */
-        flex-wrap: wrap; /* Permite que los elementos bajen a una nueva línea si no hay espacio */
-        margin: 5px
+        gap: 5px; /* Reduce el espacio entre los elementos */
+        margin: 5px;
     }
 }
 
@@ -94,6 +84,3 @@
     font-size: 1.2em;
     margin-top: 10px;
 }
-
-
-

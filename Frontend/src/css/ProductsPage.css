@@ -1,262 +1,179 @@
+/* General CSS */
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
-*{
-    font-family: 'Poppins',sans-serif;
-   
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.containerProduct{
-    width: 100%;
-    height: 100vh;
-}
-
-.RegistroProduct{
-    display: flex;
-    opacity: 0;
-    background-color: white;
-    align-items: center;
-    margin: auto;
-    background: rgb(255, 255, 255);
-    justify-content: center;
-    position: fixed;
-    pointer-events: none;
-    top: 0%;
-    height: 100vh;
-    width: 110vw;
-    transition: opacity 0.3s ease;
-}
-.modaEProduct{
-    background-color: rgb(200, 200, 204);
-    width: 500px;
-    height: 42%;
-    border-radius: 5px;
+.containerProduct {
+    width: 80%;
+    margin: 0 auto;
     text-align: center;
-}
-.form{
-    padding: 50px;
-}
-.form-control1{ /* ID */
-    margin-top: 20px;
-}
-.form-control2{ /* Nombre */
-    margin-right: 50px;
-}
-.form-control3{ /* Precio */
-    margin-right: 35px;
-}
-.form-control4{ /* Stock */
-    margin-right: 65px;
-}
-.form-control5{ /* Stock */
-    margin-right: 55px;
-}
-.form-control6{ /* Stock */
-    margin-right: 35px;
-}
-.form-control7{
-    margin-right: 42px;
-    margin-bottom: 10px;
-}
-.modalProduct{
-    background-color: rgb(205, 198, 196);
+    padding-top: 20px;
+    height: 85vh;
 }
 
-
-.closeProduct{
-    width: 30%; 
-    color: white;
-    background-color: rgb(196, 12, 12);
-    position: relative;
-    top: 14px;
-    font-size: 21px;
-    border-radius: 5px;
-}
-
-.openProduct{ 
-    width: 18%;
-    color: white;
-    background-color: rgb(57, 128, 116);
-    position: relative;
-    top: 125px;
-    left: 72%;  
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-    
-}
-.show{
-    pointer-events: auto;
-    opacity: 1;
-}
-.show2{
-    pointer-events: auto;
-    opacity: 0;
-}
-.show3{
-    pointer-events: auto;
-    opacity: 0;
-}
-.saveProduct{
-    width: 40%;
-    color: white;
-    background-color: rgb(45, 122, 109);
-    position: relative;
-    border: 0;
-    top: 10px;
-    border-radius: 5px;
-    font-size: 21px;
-}
-
-.titleProduct{
-    background-color: white;
-    left: 15%;
-    font-size: 45px;
-    position: relative;
-    top: 168px;
-}
-
-.tableProduct{
-    border: 1px solid #ddd;
+/* Input Buscar */
+.buscarProduct {
+    width: 50%;
     padding: 10px;
-    text-align: left;
-    border-collapse: collapse;
-    width: 75%;
-    color:white;
-    background-color: rgb(0, 0, 0);
-    border-radius: 5px;
-    position: relative;
-    left: 15%;
-    top: 150px;
-    font-size: 18px;
-  }
-  .filasProduct{
-    text-align: center;
-    display: tableProduct-row;
-  }
-  .datosProduct{
-    background-color: rgb(126, 126, 126);
-    text-align: center;
-  }
-
-
-.buscarProduct{
-    position: absolute; /* position the input absolutely */
-    top: 37%; /* position the input at 50% of the screen height */
-    left: 53%; /* position the input at 50% of the screen width */
-    transform: translate(-50%, -50%); /* adjust the position to center the input */
-    width: 400px; /* keep the original width */
-    color: rgb(153, 135, 135); /* keep the original background color */
-    text-align: center;
-    opacity: 1;
-    background-color: rgb(230, 245, 178);
-    font-size: 25px;
-    color: black;
-  }
-
-    /* Responsiveness for smaller screens */
-@media (max-width: 768px) {
-    .modaEProduct {
-        width: 100%;
-        height: auto;
-        max-height: 90vh;
-    }
-
-    .form-control1, .form-control2, .form-control3, .form-control4, .form-control5, .form-control6, .form-control7 {
-        margin-right: 0;
-        margin-left: 0;
-    }
-
-    .openProduct {
-        left: 0;
-        top: 100px;
-        width: 100%;
-    }
-
-    .buscarProduct {
-        left: 50%;
-        width: 90%;
-    }
-
-    .tableProduct {
-        width: 90%;
-    }
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
-@media (max-width: 480px) {
-    .titleProduct{
-        top: 10px;
-        left: 30%;
-        font-size: 30px;
-    }
-    .buscarProduct {
-        top: 22%;
-        left: 50%;
-        width: 80%;
-        font-size: 20px;
-    }
-    .tableProduct {
-        left: 3px;
-        font-size: 8px;
-        width: 98%;
-    }
-    .modaEProduct {
-        width: 100%;
-        height: auto;
-        max-height: 90vh;
-    }
+.buscarProduct:focus {
+    border-color: #007bff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
 
-    .form-idProduct{ /* ID */
-        margin-top: 10px;
-    }
-    .form-nombreProduct{ /* Nombre */
-        margin-right: 45px;
-    }
-    .form-precioProduct{ /* Precio */
-        margin-right: 35px;
-    }
-    .form-categoriaProduct{ /* categoria */
-        margin-right: 65px;
-    }
-    .form-volumenProduct{ /* volumen */
-        margin-right: 55px;
-    }
-    .form-marcaProduct{ /* Marca */
-        margin-right: 35px;
-    }
-    .form-estanteProduct{ /*estante */
-        margin-right: 42px;
-        margin-bottom: 10px;
-    }
-    .saveProduct,.closeProduct{
-        width: 40%;
-        color: white;
-        background-color: rgb(45, 122, 109);
-        position: relative;
-        border: 0;
-        top: -5px;
-        border-radius: 5px;
-    }
-    .closeProduct{
-        background-color: rgb(196, 12, 12)
-        
-    }
-    .openProduct{ 
-        top: 70px;
-        width: 60%;
-        left: 18%;
-        color: white;
-        background-color: rgb(45, 122, 109);
-        position: relative;
-        border-radius: 5px;
-        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-        font-size: 15px;    
-    }
-    .eliminarProduct,.modificarProduct{
-        font-size: 8px;
-        padding: 2px;
-    }
-    .editProduct{
-        width: 23%;
-    }
-    
+/* Tabla de Productos */
+.tableProduct {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* table-layout: fixed; */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tableProduct th, .tableProduct td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    white-space: nowrap; /* Prevent text from breaking into new line */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." for long text */
+}
+
+.tableProduct th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.tableProduct tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tableProduct tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Botones de Acción */
+.eliminarProduct, .modificarProduct {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.eliminarProduct {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.eliminarProduct:hover {
+    background-color: #e60000;
+}
+
+.modificarProduct {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.modificarProduct:hover {
+    background-color: #45a049;
+}
+
+/* Botón Nuevo Producto */
+.openProduct {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.openProduct:hover {
+    background-color: #218838;
+}
+
+/* Estilo del modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+
+.modal-content input:focus {
+    border-color: #007bff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.modal-content .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.modal-content .btn:first-of-type {
+    background-color: #007bff;
+    color: white;
+    margin-right: 10px;
+}
+
+.modal-content .btn:last-of-type {
+    background-color: #dc3545;
+    color: white;
+}
+
+.tableContainer {
+    max-height: 500px; /* Altura máxima de la tabla visible */
+    overflow-y: auto;  /* Muestra una barra de desplazamiento si el contenido excede la altura */
+    margin: 20px 0;    /* Margen alrededor de la tabla */
+    border: 1px solid #ccc;  /* Borde opcional para definir el área */
+    border-radius: 8px; /* Esquinas redondeadas para un diseño más limpio */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para resaltar */
 }

@@ -1,226 +1,189 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
-*{
-    font-family: 'Poppins',sans-serif;
-   
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-.containerProveedor{
-    width: 100%;
-    height: 100vh;
+body {
+    background-color: #f0f0f0; /* Fondo suave para toda la página */
 }
 
-.RegistroProveedor{
+.containerProveedor {
     display: flex;
-    opacity: 0;
-    background-color: white;
+    flex-direction: column;
     align-items: center;
-    margin: auto;
-    background: rgb(255, 255, 255);
-    justify-content: center;
-    position: fixed;
-    pointer-events: none;
-    top: 0%;
-    height: 100vh;
-    width: 110vw;
-    transition: opacity 0.3s ease;
-}
-.modaEProveedor{
-    background-color: rgb(200, 200, 204);
-    width: 500px;
-    height: 40%;
-    border-radius: 5px;
-    text-align: center;
-}
-.form{
-    padding: 50px;
-}
-.form-idProveedor{ /* ID */
-    margin-top: 30px;
-}
-.form-nombreProveedor{ /* Nombre */
-    margin-right: 50px;
-}
-.form-direccionProveedor{ /* direccion */
-    margin-right: 55px;
-}
-.form-telefonoProveedor{ /* telefono */
-    margin-right: 45px;
-}
-.modalProveedor{
-    background-color: rgb(205, 198, 196);
+    width: 80%;
+    margin: 0 auto; /* Centrar el contenedor */
+    padding: 20px;
 }
 
-
-.closeProveedor{
-    width: 30%; 
-    color: white;
-    background-color: rgb(196, 12, 12);
-    position: relative;
-    top: 20px;
-    font-size: 19px;
-    border-radius: 5px;
+.titleProveedor {
+    font-size: 2.5em;
+    color: #4CAF50; /* Color llamativo para el título */
+    margin-bottom: 20px;
 }
 
-.openProveedor{ 
-    font-size: 19px;
-    width: 18%;
-    color: white;
-    background-color: rgb(57, 128, 116);
-    position: relative;
-    top: 120px;
-    left: 70%;  
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-    
-}
-.show{
-    pointer-events: auto;
-    opacity: 1;
-}
-.show2{
-    pointer-events: auto;
-    opacity: 0;
-}
-.show3{
-    pointer-events: auto;
-    opacity: 0;
-}
-.saveProveedor{
-    width: 40%;
-    color: white;
-    background-color: rgb(45, 122, 109);
-    position: relative;
-    border: 0;
-    top: 16px;
-    border-radius: 5px;
-    font-size: 19px;
-}
-
-.titleProveedor{
-    background-color: white;
-    left: 14%;
-    font-size: 45px;
-    position: relative;
-    top: 170px;
-}
-
-.tableProveedor{
-    border: 1px solid #ddd;
+.buscarProveedor {
+    width: 100%;
+    max-width: 400px; /* Ancho máximo para la barra de búsqueda */
     padding: 10px;
-    text-align: left;
-    border-collapse: collapse;
-    width: 75%;
-    color:white;
-    background-color: rgb(0, 0, 0);
+    border: 1px solid #ccc; /* Borde sutil */
     border-radius: 5px;
-    position: relative;
-    left: 15%;
-    top: 150px;
-    font-size: 18px;
-  }
-  .filasProveedor{
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+}
+
+.buscarProveedor:focus {
+    border-color: #4CAF50; /* Cambiar el color del borde al enfocar */
+}
+
+.openProveedor {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.openProveedor:hover {
+    background-color: #45a049; /* Color más oscuro al pasar el mouse */
+}
+
+.tableProveedor {
+    width: 100%;
+    border-collapse: collapse; /* Eliminar espacios entre celdas */
+    margin-top: 20px;
+}
+
+.tableProveedor th, .tableProveedor td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Línea inferior sutil para las filas */
+}
+
+.tableProveedor th {
+    background-color: #4CAF50; /* Color de fondo para encabezados */
+    color: white;
+}
+
+.tableProveedor tr:hover {
+    background-color: #f1f1f1; /* Color de fondo al pasar el mouse */
+}
+
+.editProveedor {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+}
+
+.eliminarProveedor, .modificarProveedor {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.eliminarProveedor {
+    background-color: #f44336; /* Color de fondo para eliminar */
+    color: white;
+}
+
+.eliminarProveedor:hover {
+    background-color: #e53935; /* Color más oscuro al pasar el mouse */
+}
+
+.modificarProveedor {
+    background-color: #2196F3; /* Color de fondo para modificar */
+    color: white;
+}
+
+.modificarProveedor:hover {
+    background-color: #1976D2; /* Color más oscuro al pasar el mouse */
+}
+.RegistroProveedor {
+    display: none; /* Esconde el modal por defecto */
+}
+
+.RegistroProveedor.show {
+    display: block; /* Muestra el modal */
+    /* Puedes agregar más estilos para centrar el modal */
+}
+
+.containerProveedor.show2 {
+    opacity: 0.5; /* Estilo para el fondo cuando el modal está activo */
+    pointer-events: none; /* Desactiva interacciones en el fondo */
+}
+
+
+.modaEProveedor {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Ancho fijo para el modal */
     text-align: center;
-    display: tableProveedor-row;
-  }
-  .datosProveedor{
-    background-color: rgb(126, 126, 126);
-    text-align: center;
-  }
-  .tdNombreProveedor{
-    width: 30%;
-  }
+}
 
+.modalProveedor {
+    font-size: 1.5em;
+    color: #333; /* Color del título del modal */
+    margin-bottom: 20px;
+}
 
-.buscarProveedor{
-    position: absolute; /* position the input absolutely */
-    top: 38%; /* position the input at 50% of the screen height */
-    left: 53%; /* position the input at 50% of the screen width */
-    transform: translate(-50%, -50%); /* adjust the position to center the input */
-    width: 400px; /* keep the original width */
-    color: rgb(153, 135, 135); /* keep the original background color */
-    text-align: center;
-    opacity: 1;
-    background-color: rgb(230, 245, 178);
-    font-size: 25px;
-    color: black;
-  }
-  .editProveedor{
-    width: 27%;
-  }
+.form-idProveedor, .form-nombreProveedor, .form-direccionProveedor, .form-telefonoProveedor {
+    margin: 10px 0; /* Espacio entre los campos */
+}
 
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Borde sutil */
+    font-size: 16px;
+}
 
-  /* Responsiveness for smaller screens */
-@media (max-width: 480px) {
-    .titleProveedor{
-        top: 10px;
-        left: 25%;
-        font-size: 30px;
-    }
-    .buscarProveedor {
-        top: 24%;
-        left: 50%;
-        width: 80%;
-        font-size: 20px;
-    }
-    .tableProveedor {
-        left: 3px;
-        font-size: 8px;
-        width: 98%;
-    }
-    .modaEProveedor {
-        width: 80%;
-        max-height: 90vh;
-    }
+input:focus {
+    border-color: #4CAF50; /* Color del borde al enfocar */
+}
 
-    .form-idProveedor{ /* ID */
-        margin-top: 10px;
-    }
-    .form-nombreProveedor{ /* Nombre */
-        margin-right: 45px;
-    }
-    .form-direccionProveedor{ /* direccin */
-        margin-right: 55px;
-    }
-    .form-telefonoProveedor{ /* categoria */
-        margin-right: 45px;
-    }
-    .saveProveedor,.closeProveedor{
-        width: 30%;
-        font-size: 12px;
-        color: white;
-        background-color: rgb(45, 122, 109);
-        position: relative;
-        border: 0;
-        top: 20px;
-        border-radius: 5px;
-    }
-    .saveProveedor{
-        width: 40%;
-        top: 15px;
-    }
-    .closeProveedor{
-        background-color: rgb(196, 12, 12)
-        
-    }
-    .openProveedor{ 
-        top:75px;
-        width: 60%;
-        left: 18%;
-        color: white;
-        background-color: rgb(45, 122, 109);
-        position: relative;
-        border-radius: 5px;
-        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-        font-size: 15px;    
-    }
-    .eliminarProveedor,.modificarProveedor{
-        font-size: 8px;
-        padding: 2px;
-    }
-    .editProveedor{
-        width: 23%;
-    }
+.saveProveedor {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px; /* Espacio superior */
+    transition: background-color 0.3s;
+}
 
+.saveProveedor:hover {
+    background-color: #45a049; /* Color más oscuro al pasar el mouse */
+}
+
+.closeProveedor {
+    padding: 10px 20px;
+    background-color: #f44336; /* Color para cerrar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px; /* Espacio superior */
+    transition: background-color 0.3s;
+}
+
+.closeProveedor:hover {
+    background-color: #e53935; /* Color más oscuro al pasar el mouse */
 }
