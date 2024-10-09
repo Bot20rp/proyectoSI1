@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 import '../css/ProveedoresPage.css';
+import { registrarProveedorRequest, extraerID, eliminarProveedor,actualizarProveedores } from '../api/auth';
+import { useAuth } from '../context/AuthContext';
 
 function ProveedoresPage() {
     const modalContainer = useRef(null);
@@ -7,12 +9,13 @@ function ProveedoresPage() {
     const tbodyproveedors = useRef(null);
     const [proveedor, setproveedor] = useState({
         id: '',
-        nombre: '',
-        direccion: '',
-        telefono: '',
+        Nombre: '',
+        Direccion: '',
+        Contacto: '',
     });
     const [proveedors, setproveedors] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
+    const {tableProveedor,cargarDatosProveedores} = useAuth();
 
     // Manejar los cambios en el formulario
     const handleChange = (e) => {
@@ -42,6 +45,9 @@ function ProveedoresPage() {
         container.current.classList.add('show2');
     };
 
+
+
+
     const closeModal = () => {
         modalContainer.current.classList.remove('show');
         container.current.classList.remove('show2');
@@ -49,28 +55,56 @@ function ProveedoresPage() {
     };
 
     // Agregar proveedor a la tabla
-    const agregarproveedor = (proveedor) => {
-        setproveedors([...proveedors, proveedor]);
-        resetForm();
-    };
+    const agregarproveedor = async (proveedor) => {
+        try {
+            const res = await registrarProveedorRequest(proveedor);
+            if (res.data) {
+                const proveID = await extraerID(proveedor);
+                setproveedor(prevProveedor => ({
+                    ...prevProveedor,
+                    id: proveID.data.ProveedorID
+                }));
 
+                setproveedors([...proveedors, { ...proveedor, id: proveID.data.ProveedorID }]);
+                resetForm();
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
     // Resetear formulario
     const resetForm = () => {
         setproveedor({
             id: '',
-            nombre: '',
-            direccion: '',
-            telefono: '',
+            Nombre: '',
+            Direccion: '',
+            Contacto: '',
         });
         setIsEditing(false);
     };
+
+    // Función para actualizar un proveedor
+    const actualizarProveedor = async (proveedorModificado) => {
+        try {
+            // Envía la solicitud para actualizar el proveedor
+            await actualizarProveedores(proveedorModificado); // Asegúrate de que esta función haga una solicitud PUT o PATCH
+            const nuevosproveedors = proveedors.map(p => 
+                p.id === proveedorModificado.id ? proveedorModificado : p
+            );
+            setproveedors(nuevosproveedors);
+            resetForm(); // Reinicia el formulario
+        } catch (error) {
+            console.error("Error al actualizar el proveedor:", error);
+            // Manejo de errores
+        }
+    };
+
 
     // Guardar o modificar proveedor
     const handleSave = (e) => {
         e.preventDefault();
         if (isEditing) {
-            const nuevosproveedors = proveedors.map(p => p.id === proveedor.id ? proveedor : p);
-            setproveedors(nuevosproveedors);
+            actualizarProveedor(proveedor); // Llama a la función de actualizar
         } else {
             agregarproveedor(proveedor);
         }
@@ -78,19 +112,48 @@ function ProveedoresPage() {
     };
 
     // Eliminar proveedor
-    const eliminarproveedor = (id) => {
-        const nuevosproveedors = proveedors.filter(p => p.id !== id);
-        setproveedors(nuevosproveedors);
+    const eliminarproveedor = async (id) => {
+
+        const datos = { id }; // Crea el objeto con el ID a eliminar
+        console.log(datos);
+
+        try {
+            // Usa Axios para enviar la solicitud DELETE
+            await eliminarProveedor(datos); // Suponiendo que 'eliminarProveedor' es una función que usa Axios
+
+            // Filtra los proveedores y actualiza el estado
+            const nuevosproveedors = proveedors.filter(p => p.id !== id);
+            setproveedors(nuevosproveedors);
+            await cargarDatosProveedores();
+        } catch (error) {
+            console.error("Error al eliminar el proveedor:", error);
+            // Aquí puedes manejar el error, por ejemplo, mostrando un mensaje al usuario
+        }
     };
 
     // Modificar proveedor
-    const modificarproveedor = (id) => {
+    const modificarproveedor = async (id) => {
         const proveedorAModificar = proveedors.find(p => p.id === id);
         if (proveedorAModificar) {
-            setproveedor(proveedorAModificar);
-            setIsEditing(true);
-            openModal();
+            try {
+                console.log(proveedorAModificar);
+                // await actualizarProveedor(proveedorAModificar);
+                setproveedor(proveedorAModificar);
+                setIsEditing(true);
+                openModal();
+            } catch (error) {
+                console.error("Error al eliminar el proveedor:", error);
+            }
         }
+    };
+
+    const listarDatos = () =>{
+        try {
+            console.log(tableProveedor)
+            setproveedors(tableProveedor);
+          } catch (error) {
+            throw new Error('Error al obtener los datos');
+          }
     };
 
     return (
@@ -104,6 +167,9 @@ function ProveedoresPage() {
                 />
                 <button className="openProveedor" onClick={() => { resetForm(); openModal(); }}>
                     Nuevo Proveedor
+                </button>
+                <button className="openProveedor" onClick= {listarDatos} >
+                    Listar Proveedores
                 </button>
                 <table className="tableProveedor">
                     <thead>
@@ -119,12 +185,12 @@ function ProveedoresPage() {
                         {proveedors.map((prod) => (
                             <tr key={prod.id} data-id={prod.id}>
                                 <td>{prod.id}</td>
-                                <td className='tdNombreProveedor'>{prod.nombre}</td>
-                                <td>{prod.direccion}</td>
-                                <td>{prod.telefono}</td>
+                                <td className='tdNombreProveedor'>{prod.Nombre}</td>
+                                <td>{prod.Direccion}</td>
+                                <td>{prod.Contacto}</td>
                                 <td className='editProveedor'>
                                     <button className='eliminarProveedor' onClick={() => eliminarproveedor(prod.id)}>Eliminar</button>
-                                    <button className='modificarProveedor' onClick={() => modificarproveedor(prod.id)}>Modificar</button>
+                                    <button className='modificarProveedor' onClick={() => modificarproveedor(prod.id)}>Modificar1</button>
                                 </td>
                             </tr>
                         ))}
@@ -135,43 +201,34 @@ function ProveedoresPage() {
             <div className="RegistroProveedor" ref={modalContainer}>
                 <form className="modaEProveedor" onSubmit={handleSave}>
                     <h1 className="modalProveedor">Registro Proveedor</h1>
-                    <div className="form-idProveedor">
-                        <label>Id :</label>
-                        <input
-                            type='number'
-                            name="id"
-                            value={proveedor.id}
-                            onChange={handleChange}
-                            disabled={isEditing}
-                        />
-                    </div>
                     <div className="form-nombreProveedor">
                         <label>Nombre :</label>
                         <input
-                            name="nombre"
-                            value={proveedor.nombre}
+                            name="Nombre"
+                            value={proveedor.Nombre}
                             onChange={handleChange}
                         />
                     </div>
                     <div className="form-direccionProveedor">
                         <label>Direccion :</label>
                         <input
-                            name="direccion"
-                            value={proveedor.direccion}
+                            name="Direccion"
+                            value={proveedor.Direccion}
                             onChange={handleChange}
                         />
                     </div>
                     <div className="form-telefonoProveedor">
                         <label>Telefono:</label>
                         <input
-                            name="telefono"
-                            value={proveedor.telefono}
+                            name="Contacto"
+                            type='number'
+                            value={proveedor.Contacto}
                             onChange={handleChange}
                         />
                     </div>
                     <div className="form-control border-white">
                         <button type="submit" className="saveProveedor">
-                            {isEditing ? "Modificar" : "Guardar"}
+                            {isEditing ? "Modificar123" : "Guardar"}
                         </button>
                     </div>
 

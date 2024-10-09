@@ -1,7 +1,7 @@
 import '../css/RegisterClientPage.css';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { registerRequest } from "../api/auth";
+import { registerEmpleado} from "../api/auth";
 
 function RegisterEmplead() {
     const { register, handleSubmit, reset } = useForm();
@@ -11,7 +11,8 @@ function RegisterEmplead() {
     const onSubmit = async (data) => {
         setLoading(true); // Iniciar carga
         try {
-            const res = await registerRequest(data);
+            console.log(data)
+            const res = await registerEmpleado(data);
             if (res.data) {
                 reset(); // Limpiar el formulario después del éxito
             }

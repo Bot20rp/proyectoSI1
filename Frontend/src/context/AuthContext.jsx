@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { loginRequest, verityTokenResquest,obtenerRequest } from "../api/auth";
+import { loginRequest, verityTokenResquest,obtenerRequest,obtenerRequestProveedor } from "../api/auth";
 import Cookies from 'js-cookie';
 
 
@@ -19,6 +19,7 @@ export const useAuth = () => {
     const [loading,setLoading] = useState(true);
     const [rol,setRol] = useState(null);
     const [tableUser,setTableUser] = useState([]);
+    const [tableProveedor,setTableProveedor] = useState([]);
   
     const signin = async (user) => {
       try {
@@ -30,6 +31,7 @@ export const useAuth = () => {
         if(res.data.user.rol === 'Administrador'|| res.data.user.rol ==='encargado'){
           console.log("si entre")
           cargarDatos();
+          cargarDatosProveedores();
         }else{
           console.log("Acceso denegado para cargar datos user")
         }
@@ -58,6 +60,29 @@ export const useAuth = () => {
         
 
         setTableUser(datosNuevos);
+        console.log(datosNuevos);
+
+      } catch (error) {
+        console.error('Error al obtener los datos:', error);
+      }
+    }
+
+    const cargarDatosProveedores = async () =>{
+      try {
+        const respuesta = await obtenerRequestProveedor();
+        console.log(respuesta.data)
+        if(respuesta.status !== 200){
+          throw new Error('Error Obtener datos')
+        }
+        const datosNuevos = respuesta.data.map(data => ({
+          id: data.ProveedorID, 
+          Nombre: data.Nombre,
+          Contacto: data.Contacto,
+          Direccion : data.Direccion
+        }));
+        
+
+        setTableProveedor(datosNuevos);
         console.log(datosNuevos);
 
       } catch (error) {
@@ -95,6 +120,7 @@ export const useAuth = () => {
           // Cargar datos si el rol es "Administrador" o "encargado"
           if (res.data.user.rol === 'Administrador' || res.data.user.rol === 'encargado') {
              cargarDatos();
+             cargarDatosProveedores();
           }
 
         } catch (error) {
@@ -116,7 +142,9 @@ export const useAuth = () => {
         esAutenticado, 
         loading,
         rol,
-        tableUser
+        tableUser,
+        tableProveedor,
+        cargarDatosProveedores,
       }}>
         {children}
       </AuthContext.Provider>
