@@ -14,6 +14,7 @@ import ProductsPage from '../../pages/ProductsPage'
 import ProveedoresPage from '../../pages/ProveedoresPage'
 import UsuarioPage from '../../pages/UsuarioPage'
 import CategoriaProductPage from '../../pages/CategoriaProductPage' 
+import RegisterEmplead from "../../pages/RegisterEmplead";
 import "./homed.css";
 
 export const Homed = () => {
@@ -33,6 +34,7 @@ export const Homed = () => {
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/clienggg" element={<Clientes/>} />
         <Route path="/categoriaproducto" element={<CategoriaProductPage/>}  />
+        <Route path="/empleadRegister" element={<RegisterEmplead/>}  />
       </Routes>
 
 

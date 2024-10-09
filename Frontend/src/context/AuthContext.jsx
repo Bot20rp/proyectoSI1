@@ -50,7 +50,10 @@ export const useAuth = () => {
           correo: usuarios.correo,
           telefono: usuarios.telefono,
           genero: usuarios.genero,
-          rol: usuarios.rol // Suponiendo que `Rol` es un objeto que contiene el nombre
+          rol: usuarios.rol, // Suponiendo que `Rol` es un objeto que contiene el nombre
+          salario:  usuarios.salario,
+          horarioInicio: usuarios.horarioInicio,
+          horarioFin : usuarios.horarioFin
         }));
         
 

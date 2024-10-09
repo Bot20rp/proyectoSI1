@@ -3,7 +3,8 @@ import '../css/UsuarioPage.css';
 import { useState } from 'react';
 
 function UsuarioPages() {
-  const {tableUser} = useAuth();
+  const { tableUser, user } = useAuth();
+  const [usuarioInterfaz,setUsuarioInterfaz] = useState(null);
   const [datos, setDatos] = useState([]);
   const [mostrarEliminar, setMostrarEliminar] = useState(false);
   const [mostrarActualizar, setMostrarActualizar] = useState(false);
@@ -17,8 +18,11 @@ function UsuarioPages() {
     rol: ''
   });
 
+  
+
   const buscarDatos = async () => {
     try {
+      console.log(tableUser)
       setDatos(tableUser);
     } catch (error) {
       throw new Error('Error al obtener los datos');
@@ -39,6 +43,7 @@ function UsuarioPages() {
     const usuario = datos.find(dato => dato.id === id);
     setFormActualizar(usuario);
     setMostrarActualizar(true);  // Mostrar la ventana modal de actualización
+    setUsuarioInterfaz(usuario.rol)
   };
 
   const manejarCambio = (e) => {
@@ -63,41 +68,41 @@ function UsuarioPages() {
           <button className="btn" onClick={buscarDatos}>Buscar</button>
         </div>
         <div className="inputUser-group">
-        <select className="inputUser-box" defaultValue="">
-  <option value="" disabled>Listar por Iniciales</option>
-  <option value="A">A</option>
-  <option value="B">B</option>
-  <option value="C">C</option>
-  <option value="D">D</option>
-  <option value="E">E</option>
-  <option value="F">F</option>
-  <option value="G">G</option>
-  <option value="H">H</option>
-  <option value="I">I</option>
-  <option value="J">J</option>
-  <option value="K">K</option>
-  <option value="L">L</option>
-  <option value="M">M</option>
-  <option value="N">N</option>
-  <option value="O">O</option>
-  <option value="P">P</option>
-  <option value="Q">Q</option>
-  <option value="R">R</option>
-  <option value="S">S</option>
-  <option value="T">T</option>
-  <option value="U">U</option>
-  <option value="V">V</option>
-  <option value="W">W</option>
-  <option value="X">X</option>
-  <option value="Y">Y</option>
-  <option value="Z">Z</option>
-</select>
-<select className="inputUser-box" defaultValue="">
-  <option value="" disabled>Listar por Rol</option>
-  <option value="admin">Administrador</option>
-  <option value="user">Encargado</option>
-  <option value="guest">Cliente</option>
-</select>
+          <select className="inputUser-box" defaultValue="">
+            <option value="" disabled>Listar por Iniciales</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+            <option value="K">K</option>
+            <option value="L">L</option>
+            <option value="M">M</option>
+            <option value="N">N</option>
+            <option value="O">O</option>
+            <option value="P">P</option>
+            <option value="Q">Q</option>
+            <option value="R">R</option>
+            <option value="S">S</option>
+            <option value="T">T</option>
+            <option value="U">U</option>
+            <option value="V">V</option>
+            <option value="W">W</option>
+            <option value="X">X</option>
+            <option value="Y">Y</option>
+            <option value="Z">Z</option>
+          </select>
+          <select className="inputUser-box" defaultValue="">
+            <option value="" disabled>Listar por Rol</option>
+            <option value="admin">Administrador</option>
+            <option value="user">Encargado</option>
+            <option value="guest">Cliente</option>
+          </select>
           <button className="btn" onClick={buscarDatos}>Listar Todos</button>
         </div>
         <div className='listaUsuarios'>
@@ -143,30 +148,33 @@ function UsuarioPages() {
           </div>
         </div>
       )}
-
       {/* Modal para Actualizar Usuario */}
       {mostrarActualizar && (
         <div className="modal">
           <div className="modal-content">
             <h3>Actualizar Usuario</h3>
-            <input
-              name="usuario"
-              value={formActualizar.usuario}
-              onChange={manejarCambio}
-              placeholder="Nombre de usuario"
-            />
+            {usuarioInterfaz === 'Administrador' && (
+              <input
+                name="telefono"
+                value={formActualizar.telefono}
+                onChange={manejarCambio}
+                placeholder="Teléfono"
+              />
+            )}
             <input
               name="correo"
               value={formActualizar.correo}
               onChange={manejarCambio}
               placeholder="Correo"
             />
-            <input
-              name="telefono"
-              value={formActualizar.telefono}
-              onChange={manejarCambio}
-              placeholder="Teléfono"
-            />
+            {user.rol === 'empleado' && (
+              <input
+                name="telefono"
+                value={formActualizar.telefono}
+                onChange={manejarCambio}
+                placeholder="Teléfono"
+              />
+            )}
             <select name="genero" value={formActualizar.genero} onChange={manejarCambio}>
               <option value="masculino">Masculino</option>
               <option value="femenino">Femenino</option>

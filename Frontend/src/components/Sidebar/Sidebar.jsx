@@ -80,7 +80,7 @@ const enlaceprincipal = [
   {
     label: "Empleados",
     icon: <AiOutlineApartment />,
-    to: "/dasboard/empleados",
+    to: "/dasboard/empleadRegister",
   },
   {
     label: "Clientes",

@@ -104,7 +104,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     
     transition: transform 0.3s ease; /* Animación suave al escalar */
 }
