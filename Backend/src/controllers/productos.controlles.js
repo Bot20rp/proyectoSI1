@@ -1,4 +1,4 @@
-import producto,{createProducto, obtProducto} from "../models/Producto.js";
+import producto,{createProducto, obtProducto,actProducto} from "../models/Producto.js";
 
 
 export const registrarProducto=async (req,res)=>{
@@ -18,6 +18,16 @@ export const getProducto=async (req,res)=>{
     try {
         const productos=await obtProducto()
         res.status(200).json(productos)
+    } catch (error) {
+        res.status(500).json({err:error.message})
+    }
+}
+
+export const updateProducto=async (req,res)=>{
+    console.log(req.body.data)
+    try {
+        const productos=await actProducto(req.body.data)
+        res.status(200).json({msg:"ACtualizacion exitosa"})
     } catch (error) {
         res.status(500).json({err:error.message})
     }

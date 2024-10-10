@@ -62,4 +62,13 @@ export const obtProducto=async ()=>{
     }
 }
 
+export const actProducto= async ({id,Nombre,Precio,Volumen,Marca,Estante, Categoria})=>{
+    try {
+        const data= db.query(`CALL updProducto('${Number(id)}','${Nombre}','${Number(Precio)}','${Volumen}','${Marca}','${Estante}','${Categoria=1}') `)
+        return data;
+    } catch (error) {
+        throw new Error(`Error al llamar al PA ${error.message}`)
+    }
+}
+
 export default producto;

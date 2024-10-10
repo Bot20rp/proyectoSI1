@@ -10,8 +10,6 @@ import { Navbar } from "./components/Navbar/Navbar.jsx";
 import { Home } from "./pages/Home.jsx";
 import LoginPage from "./pages/LoginPage";
 import ProtecComponente from "./ProtecComponente.jsx";
-import RegisterClientPage from "./pages/RegisterClientPage.jsx";
-import RegisterEmplead from "./pages/RegisterEmplead.jsx";
 import { Shop } from "./pages/Shop.jsx";
 import { Product } from "./pages/Product.jsx";
 import { Cart } from "./pages/Cart.jsx";
@@ -38,9 +36,6 @@ function Main() {
         <Route path="/shop/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/clientRegister" element={<RegisterClientPage />} />
-        <Route path="/empleadRegister" element={<RegisterEmplead />} />
-
 
         <Route path="/dasboard/*" element={<ProtecComponente component={Homed} />} />
       </Routes>

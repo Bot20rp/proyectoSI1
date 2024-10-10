@@ -42,8 +42,23 @@ export const registerEmpleado = user => axios.post(`/empleadoreg`,user)
 
 //Gestion Categoria
 
-export const insertarCategoriaPadre = user => axios.post(`/categoriaPadre`,user)
+export const insertarCategoriaPadre = user => axios.post(`/categoriaPadre`,{ data: user,
+    headers:{
+        'Content-Type': 'application/json', 
+    }
+})
+export const insertarCategoriaHija = user => axios.post(`/categoriaHija`,{ data: user,
+    headers:{
+        'Content-Type': 'application/json', 
+    }
+})
 export const actualizarCategoria = user => axios.patch('/catmodificar',user);
+export const obtenerCategorias = () => {return axios.get(`/getCategoria`);};
+export const eliminarCategorias = user => axios.delete(`/DeleteCategoria`,{data : user,
+    headers :{
+        'Content-Type': 'application/json', 
+    }
+});
 
 
 //GESTION PRODUCTO
@@ -53,4 +68,12 @@ export const insertarProducto = user => axios.post(`/productoReg`, { data: user 
     },
 });
 
+
+
 export const obtenerProductos = () => {return axios.get(`/producto`)};
+
+export const actualizarProducto = user => axios.patch(`/producto/actualizar`,{data :user ,
+    headers:{
+        'Content-Type': 'application/json', 
+    },
+});

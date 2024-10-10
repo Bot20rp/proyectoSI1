@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import '../css/ProductsPage.css';
-import { insertarProducto, obtenerProductos} from '../api/auth';
+import { insertarProducto, obtenerProductos,actualizarProducto} from '../api/auth';
 
 function ProductsPage() {
     const tbodyProductos = useRef(null);
@@ -77,11 +77,13 @@ function ProductsPage() {
     };
 
     // Guardar o modificar producto
-    const handleSave = (e) => {
+    const handleSave = async (e) => {
         e.preventDefault();
         if (isEditing) {
+            await actualizarProducto(producto)
             const nuevosProductos = productos.map(p => p.id === producto.id ? producto : p);
             setProductos(nuevosProductos);
+
         } else {
             agregarProducto(producto);
         }
