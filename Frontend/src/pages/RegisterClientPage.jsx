@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { registerRequest } from "../api/auth";
 
 function RegisterClientPage() {
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [loading, setLoading] = useState(false);
 
     // En la función onSubmit
@@ -73,8 +73,10 @@ function RegisterClientPage() {
                             className="inputClient"
                             type="password"
                             placeholder="Contraseña"
-                            {...register('Contrasena', { required: true })}
+                            {...register('Contrasena', { required: true, minLength:8 })}
                         />
+                        {errors.Contrasena?.type === 'required' && <small>El campo no puede estar vacío</small>}
+                        {errors.Contrasena?.type === 'minLength' && <small>La contraseña debe tener al menos 8 caracteres</small>}
                     </div>
                     <div className="inputWrapper">
                         <label htmlFor="Telefono">Teléfono</label>
