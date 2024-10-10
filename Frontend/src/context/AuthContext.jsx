@@ -41,6 +41,15 @@ export const useAuth = () => {
       }
     };
 
+    const logout = () => {
+      Cookies.remove('token'); 
+      setUser(null);           
+      setEsAutenticado(false);
+      setRol(null);            
+      setTableUser([]);        
+      // navigate('/login');    
+    };
+
     const cargarDatos = async () =>{
       try {
         const respuesta = await obtenerRequest();
@@ -145,7 +154,8 @@ export const useAuth = () => {
         rol,
         tableUser,
         tableProveedor,
-        cargarDatosProveedores
+        cargarDatosProveedores,
+        logout
       }}>
         {children}
       </AuthContext.Provider>

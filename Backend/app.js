@@ -9,6 +9,7 @@ import routerUser from "./src/routes/usuario.routes.js";
 import routerProv from "./src/routes/proveedor.routes.js";
 import routerEmp from "./src/routes/empleado.routes.js";
 import routerCat from "./src/routes/categoria.routes.js";
+import routerProd from "./src/routes/producto.routes.js";
 
 const app = express();
 rundb();
@@ -28,5 +29,6 @@ app.use("/api",routerUser);
 app.use("/api",routerProv);
 app.use("/api",routerEmp);
 app.use("/api",routerCat);
+app.use("/api",routerProd);
 
 export default app;

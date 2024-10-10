@@ -43,3 +43,14 @@ export const registerEmpleado = user => axios.post(`/empleadoreg`,user)
 //Gestion Categoria
 
 export const insertarCategoriaPadre = user => axios.post(`/categoriaPadre`,user)
+export const actualizarCategoria = user => axios.patch('/catmodificar',user);
+
+
+//GESTION PRODUCTO
+export const insertarProducto = user => axios.post(`/productoReg`, { data: user ,
+    headers:{
+        'Content-Type': 'application/json', 
+    },
+});
+
+export const obtenerProductos = () => {return axios.get(`/producto`)};

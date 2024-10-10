@@ -1,17 +1,18 @@
 import React, { useRef, useState } from 'react';
 import '../css/ProductsPage.css';
+import { insertarProducto, obtenerProductos} from '../api/auth';
 
 function ProductsPage() {
     const tbodyProductos = useRef(null);
 
     const [producto, setProducto] = useState({
         id: '',
-        nombre: '',
-        precio: '',
-        categoria: '',
-        volumen: '',
-        marca: '',
-        estante: ''
+        Nombre: '',
+        Precio: '',
+        Categoria: '',
+        Volumen: '',
+        Marca: '',
+        Estante: ''
     });
 
     const [productos, setProductos] = useState([]);
@@ -49,9 +50,16 @@ function ProductsPage() {
     };
 
     // Agregar producto a la tabla
-    const agregarProducto = (producto) => {
-        setProductos([...productos, producto]);
-        resetForm();
+    const agregarProducto = async (producto) => {
+        try {
+            console.log(producto)
+            await insertarProducto(producto)
+            setProductos([...productos, producto]);
+            resetForm();
+        } catch (error) {
+            console.log(error)
+        }
+
     };
 
     // Resetear formulario
@@ -104,6 +112,28 @@ function ProductsPage() {
         });
     };
 
+    const listar = async()=> {
+        try {
+            const detos = await obtenerProductos();
+            console.log(detos)
+            if (Array.isArray(detos.data)) {
+                const productosFormateados = detos.data.map((producto) => ({
+                    id: producto.ProductoID,  
+                    Nombre: producto.Nombre,    
+                    Precio: producto.Precio,   
+                    Categoria: producto.Catego,
+                    Volumen: producto.Vol,
+                    Marca: producto.Marc,
+                    Estante: producto.Estant
+                }));
+    
+                setProductos(productosFormateados);
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     // Confirmar actualización
     const confirmarActualizar = () => {
         setMostrarActualizar(false);
@@ -120,6 +150,9 @@ function ProductsPage() {
                 />
                 <button className="openProduct" onClick={openModal}>
                     Nuevo Producto
+                </button>
+                <button className="openProduct" onClick={listar}>
+                    Listar Productos
                 </button>
                 <div className="tableContainer">
                     <table className="tableProduct">
@@ -139,12 +172,12 @@ function ProductsPage() {
                             {productos.map((prod) => (
                                 <tr key={prod.id} data-id={prod.id}>
                                     <td>{prod.id}</td>
-                                    <td>{prod.nombre}</td>
-                                    <td>{prod.precio}</td>
-                                    <td>{prod.categoria}</td>
-                                    <td>{prod.volumen}</td>
-                                    <td>{prod.marca}</td>
-                                    <td>{prod.estante}</td>
+                                    <td>{prod.Nombre}</td>
+                                    <td>{prod.Precio}</td>
+                                    <td>{prod.Categoria}</td>
+                                    <td>{prod.Volumen}</td>
+                                    <td>{prod.Marca}</td>
+                                    <td>{prod.Estante}</td>
                                     <td className="editProduct">
                                         <button className="eliminarProduct" onClick={() => eliminarProducto(prod.id)}>Eliminar</button>
                                         <button className="modificarProduct" onClick={() => modificarProducto(prod.id)}>Modificar</button>
@@ -168,38 +201,38 @@ function ProductsPage() {
                                 placeholder="id de producto"
                             />
                             <input
-                                name="nombre"
-                                value={producto.nombre}
+                                name="Nombre"
+                                value={producto.Nombre}
                                 onChange={handleChange}
                                 placeholder="Nombre de producto"
                             />
                             <input
-                                name="precio"
-                                value={producto.precio}
+                                name="Precio"
+                                value={producto.Precio}
                                 onChange={handleChange}
                                 placeholder="Precio"
                             />
                             <input
-                                name="categoria"
-                                value={producto.categoria}
+                                name="Categoria"
+                                value={producto.Categoria}
                                 onChange={handleChange}
                                 placeholder="Categoría"
                             />
                             <input
-                                name="volumen"
-                                value={producto.volumen}
+                                name="Volumen"
+                                value={producto.Volumen}
                                 onChange={handleChange}
                                 placeholder="Volumen"
                             />
                             <input
-                                name="marca"
-                                value={producto.marca}
+                                name="Marca"
+                                value={producto.Marca}
                                 onChange={handleChange}
                                 placeholder="Marca"
                             />
                             <input
-                                name="estante"
-                                value={producto.estante}
+                                name="Estante"
+                                value={producto.Estante}
                                 onChange={handleChange}
                                 placeholder="Estante"
                             />

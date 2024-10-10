@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import '../css/CategoriaProductPage.css';
-import { insertarCategoriaPadre } from '../api/auth';
+import { insertarCategoriaPadre, actualizarCategoria } from '../api/auth';
 
 function CategoriaProductPage() {
     const [categorias, setCategorias] = useState([]);
@@ -18,67 +18,80 @@ function CategoriaProductPage() {
 
     // Manejo de cambios en el formulario
     const handleInputChange = (e) => {
-        setFormValues({ ...formValues, [e.target.name]: e.target.value });
+        try {
+            setFormValues({ ...formValues, [e.target.name]: e.target.value });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
-    // Guardar los datos de categorías o subcategorías
+    // Función para guardar nuevas categorías o subcategorías
     const handleSave = async (e) => {
         e.preventDefault();
-        if (isEditing) {
-            if (!formValues.categoria) {
-                // Actualizar categoría
-                const updatedCategorias = categorias.map((cat) =>
-                    cat.id === formValues.id ? { ...cat, Nombre: formValues.Nombre } : cat
-                );
-                setCategorias(updatedCategorias);
-                // Actualizar las subcategorías relacionadas con la categoría modificada
-                setCategorias((prevCategorias) =>
-                    prevCategorias.map((cat) =>
-                        cat.categoria === formValues.NombreAnterior ? { ...cat, categoria: formValues.Nombre } : cat
-                    )
-                );
-            } else if (isEditingSubCategoria) {
-
-                // Actualizar subcategoría sin afectar la tabla de categorías
-                const updatedSubcategorias = categorias.map((cat) =>
-                    cat.id === formValues.id ? formValues : cat
-                );
-                setCategorias(updatedSubcategorias);
-            }
-            setIsEditing(false);
-            setIsEditingSubCategoria(false);
-        } else {
-            try {
-                await insertarCategoriaPadre(formValues)
+        try {
+            if (!isEditing) {
+                await insertarCategoriaPadre(formValues); // Llamada al backend para insertar nueva categoría
                 setCategorias([...categorias, formValues]);
-                console.log(formValues)
-                
-            } catch (error) {
-                console.log(error)
+                console.log('Datos guardados:', formValues);
             }
+        } catch (error) {
+            console.log('Error al guardar:', error);
         }
         resetForm();
         closeModal();
     };
 
+    // Función para modificar categorías o subcategorías
+    const handleModify = async (e) => {
+        e.preventDefault();
+        try {
+            if (isEditing) {
+                if (!formValues.categoria) {
+                    // Modificar categoría
+                    await actualizarCategoria(formValues); // Llamada al backend para actualizar categoría
+                    const updatedCategorias = categorias.map((cat) =>
+                        cat.id === formValues.id ? { ...cat, Nombre: formValues.Nombre } : cat
+                    );
+                    setCategorias(updatedCategorias);
+                    // Actualizar las subcategorías relacionadas con la categoría modificada
+                    setCategorias((prevCategorias) =>
+                        prevCategorias.map((cat) =>
+                            cat.categoria === formValues.NombreAnterior ? { ...cat, categoria: formValues.Nombre } : cat
+                        )
+                    );
+                } else if (isEditingSubCategoria) {
+                    // Modificar subcategoría
+                    await actualizarCategoria(formValues); // Llamada al backend para actualizar subcategoría
+                    const updatedSubcategorias = categorias.map((cat) =>
+                        cat.id === formValues.id ? formValues : cat
+                    );
+                    setCategorias(updatedSubcategorias);
+                }
+            }
+        } catch (error) {
+            console.log('Error al modificar:', error);
+        }
+        resetForm();
+        closeModal();
+    };
+
+    // Confirmar antes de modificar
+    const confirmModify = (id, esSubCategoria) => {
+        if (window.confirm('¿Estás seguro de que deseas modificar este registro?')) {
+            handleEdit(id, esSubCategoria); // Llamada a la función de edición
+        }
+    };
+
     // Abrir el modal de subcategoría
     const openSubCategoriaModal = () => {
-        setFormValues({
-            id: "",
-            Nombre: "",
-            categoria: ""
-        }); // Resetear formulario
+        resetForm();
         modalSubCategoriaContainer.current.classList.add('show');
         container.current.classList.add('show2');
     };
 
     // Abrir el modal de categoría
     const openCategoriaModal = () => {
-        setFormValues({
-            id: "",
-            Nombre: "",
-            categoria: ""
-        }); // Resetear formulario
+        resetForm();
         modalCategoriaContainer.current.classList.add('show');
         container.current.classList.add('show2');
     };
@@ -145,8 +158,8 @@ function CategoriaProductPage() {
     };
 
     return (
-        <div className="containerCategoriaProduct" >
-            <div ref={container} >
+        <div className="containerCategoriaProduct">
+            <div ref={container}>
 
                 <h1 className="titleCategoriaPage">Categoria de Productos</h1>
                 <input
@@ -161,6 +174,7 @@ function CategoriaProductPage() {
                     Nueva Categoria
                 </button>
 
+                {/* Resto del código para tablas y modales */}
                 <table className="tableSubCategoria">
                     <thead>
                         <tr>
@@ -327,3 +341,5 @@ function CategoriaProductPage() {
 }
 
 export default CategoriaProductPage;
+
+
