@@ -16,10 +16,11 @@ import UsuarioPage from '../../pages/UsuarioPage'
 import CategoriaProductPage from '../../pages/CategoriaProductPage' 
 import RegisterEmplead from "../../pages/RegisterEmplead";
 import "./homed.css";
+import LoginPage from "../../pages/LoginPage";
 
 export const Homed = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-
+ 
   return (
     <div className={`containe12 ${sidebarOpen ? "active12" : ""}`}>
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
@@ -35,8 +36,8 @@ export const Homed = () => {
         <Route path="/clienggg" element={<Clientes/>} />
         <Route path="/categoriaproducto" element={<CategoriaProductPage/>}  />
         <Route path="/empleadRegister" element={<RegisterEmplead/>}  />
+        <Route path="/login" element={<LoginPage/>}  />
       </Routes>
-
 
 
 

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import '../css/CategoriaProductPage.css';
+import { insertarCategoriaPadre } from '../api/auth';
 
 function CategoriaProductPage() {
     const [categorias, setCategorias] = useState([]);
@@ -7,7 +8,7 @@ function CategoriaProductPage() {
     const [isEditingSubCategoria, setIsEditingSubCategoria] = useState(false); // Control para edición de subcategoría
     const [formValues, setFormValues] = useState({
         id: "",
-        nombre: "",
+        Nombre: "",
         categoria: "",
     });
 
@@ -21,23 +22,23 @@ function CategoriaProductPage() {
     };
 
     // Guardar los datos de categorías o subcategorías
-    const handleSave = (e) => {
+    const handleSave = async (e) => {
         e.preventDefault();
         if (isEditing) {
             if (!formValues.categoria) {
                 // Actualizar categoría
                 const updatedCategorias = categorias.map((cat) =>
-                    cat.id === formValues.id ? { ...cat, nombre: formValues.nombre } : cat
+                    cat.id === formValues.id ? { ...cat, Nombre: formValues.Nombre } : cat
                 );
                 setCategorias(updatedCategorias);
-
                 // Actualizar las subcategorías relacionadas con la categoría modificada
                 setCategorias((prevCategorias) =>
                     prevCategorias.map((cat) =>
-                        cat.categoria === formValues.nombreAnterior ? { ...cat, categoria: formValues.nombre } : cat
+                        cat.categoria === formValues.NombreAnterior ? { ...cat, categoria: formValues.Nombre } : cat
                     )
                 );
             } else if (isEditingSubCategoria) {
+
                 // Actualizar subcategoría sin afectar la tabla de categorías
                 const updatedSubcategorias = categorias.map((cat) =>
                     cat.id === formValues.id ? formValues : cat
@@ -47,7 +48,14 @@ function CategoriaProductPage() {
             setIsEditing(false);
             setIsEditingSubCategoria(false);
         } else {
-            setCategorias([...categorias, formValues]);
+            try {
+                await insertarCategoriaPadre(formValues)
+                setCategorias([...categorias, formValues]);
+                console.log(formValues)
+                
+            } catch (error) {
+                console.log(error)
+            }
         }
         resetForm();
         closeModal();
@@ -57,7 +65,7 @@ function CategoriaProductPage() {
     const openSubCategoriaModal = () => {
         setFormValues({
             id: "",
-            nombre: "",
+            Nombre: "",
             categoria: ""
         }); // Resetear formulario
         modalSubCategoriaContainer.current.classList.add('show');
@@ -68,7 +76,7 @@ function CategoriaProductPage() {
     const openCategoriaModal = () => {
         setFormValues({
             id: "",
-            nombre: "",
+            Nombre: "",
             categoria: ""
         }); // Resetear formulario
         modalCategoriaContainer.current.classList.add('show');
@@ -85,7 +93,7 @@ function CategoriaProductPage() {
 
     // Reiniciar los valores del formulario
     const resetForm = () => {
-        setFormValues({ id: "", nombre: "", categoria: "" });
+        setFormValues({ id: "", Nombre: "", categoria: "" });
         setIsEditing(false);
         setIsEditingSubCategoria(false);
     };
@@ -100,7 +108,7 @@ function CategoriaProductPage() {
             const categoriaAEliminar = categorias.find((cat) => cat.id === id && !cat.categoria);
             setCategorias((prevCategorias) =>
                 prevCategorias.filter(
-                    (cat) => cat.id !== id && cat.categoria !== categoriaAEliminar.nombre
+                    (cat) => cat.id !== id && cat.categoria !== categoriaAEliminar.Nombre
                 )
             );
         }
@@ -112,7 +120,7 @@ function CategoriaProductPage() {
         if (categoria) {
             setFormValues({
                 ...categoria,
-                nombreAnterior: categoria.nombre // Guardar el nombre anterior para actualizar subcategorías
+                NombreAnterior: categoria.Nombre // Guardar el Nombre anterior para actualizar subcategorías
             });
             if (esSubCategoria) {
                 // Es subcategoría, abre el modal de subcategoría
@@ -143,7 +151,7 @@ function CategoriaProductPage() {
                 <h1 className="titleCategoriaPage">Categoria de Productos</h1>
                 <input
                     className="buscarCategoria"
-                    placeholder="Buscar por nombre"
+                    placeholder="Buscar por Nombre"
                     onChange={handleSearch}
                 />
                 <button className='openRegisterSubCategoria' onClick={openSubCategoriaModal}>
@@ -168,7 +176,7 @@ function CategoriaProductPage() {
                             .map((cat) => (
                                 <tr key={cat.id} data-id={cat.id}>
                                     <td>{cat.id}</td>
-                                    <td>{cat.nombre}</td>
+                                    <td>{cat.Nombre}</td>
                                     <td>{cat.categoria}</td>
                                     <td>
                                         <button
@@ -203,7 +211,7 @@ function CategoriaProductPage() {
                             .map((cat) => (
                                 <tr key={cat.id} data-id={cat.id}>
                                     <td>{cat.id}</td>
-                                    <td>{cat.nombre}</td>
+                                    <td>{cat.Nombre}</td>
                                     <td>
                                         <button
                                             className="btn-eliminarCategoria"
@@ -240,12 +248,12 @@ function CategoriaProductPage() {
                         />
                     </div>
                     <div className="form-control2">
-                        <label htmlFor="nombre"></label>
+                        <label htmlFor="Nombre"></label>
                         <input
                             className='formSubCategoria'
                             placeholder="Nombre"
-                            name="nombre"
-                            value={formValues.nombre}
+                            name="Nombre"
+                            value={formValues.Nombre}
                             onChange={handleInputChange}
                             required
                         />
@@ -263,7 +271,7 @@ function CategoriaProductPage() {
                             {categorias
                                 .filter(cat => !cat.categoria) // Mostrar solo categorías
                                 .map((cat) => (
-                                    <option key={cat.id} value={cat.nombre}>{cat.nombre}</option>
+                                    <option key={cat.id} value={cat.Nombre}>{cat.Nombre}</option>
                                 ))}
                         </select>
                     </div>
@@ -294,12 +302,12 @@ function CategoriaProductPage() {
                         />
                     </div>
                     <div className="form-control2">
-                        <label htmlFor="nombre"></label>
+                        <label htmlFor="Nombre"></label>
                         <input
                             className='formCategoria'
                             placeholder="Nombre"
-                            name="nombre"
-                            value={formValues.nombre}
+                            name="Nombre"
+                            value={formValues.Nombre}
                             onChange={handleInputChange}
                             required
                         />

@@ -1,6 +1,6 @@
 import { db } from "../config/dbConfig.js";
 import { DataTypes } from "sequelize";
-const empleado =db.define('empleado',{
+const Empleado =db.define('empleado',{
     EmpleadoID:{
         type:DataTypes.INTEGER,
         primaryKey:true,
@@ -32,4 +32,4 @@ export async function getEmple(id){
     const [data,metadata]= await db.query( `Call obtenerEmpleados(${id})`)
     return data
 }
-export default empleado;
+export default Empleado;

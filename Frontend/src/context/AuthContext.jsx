@@ -27,8 +27,9 @@ export const useAuth = () => {
         setEsAutenticado(true)
         setUser(res.data)
         setRol(res.data.user.rol)
+        console.log("hola")
 
-        if(res.data.user.rol === 'Administrador'|| res.data.user.rol ==='encargado'){
+        if(res.data.user.rol === 'Administrador'|| res.data.user.rol ==='Cliente'){
           console.log("si entre")
           cargarDatos();
           cargarDatosProveedores();
@@ -118,7 +119,7 @@ export const useAuth = () => {
           setRol(res.data.user.rol);
   
           // Cargar datos si el rol es "Administrador" o "encargado"
-          if (res.data.user.rol === 'Administrador' || res.data.user.rol === 'encargado') {
+          if (res.data.user.rol === 'Administrador' || res.data.user.rol === 'Cliente') {
              cargarDatos();
              cargarDatosProveedores();
           }
@@ -144,7 +145,7 @@ export const useAuth = () => {
         rol,
         tableUser,
         tableProveedor,
-        cargarDatosProveedores,
+        cargarDatosProveedores
       }}>
         {children}
       </AuthContext.Provider>

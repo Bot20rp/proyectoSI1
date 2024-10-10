@@ -1,6 +1,7 @@
 import { useAuth } from '../context/AuthContext';
 import '../css/UsuarioPage.css';
 import { useState } from 'react';
+import { actualizarUsuario,eliminarUsuario } from '../api/auth';
 
 function UsuarioPages() {
   const { tableUser, user } = useAuth();
@@ -11,11 +12,15 @@ function UsuarioPages() {
   const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
   const [formActualizar, setFormActualizar] = useState({
     id: '',
-    usuario: '',
+    suario: '',
     correo: '',
     telefono: '',
     genero: '',
-    rol: ''
+    fechaNacimiento:'', 
+    rol: '',
+    salario:'',
+    horarioInicio: '',
+    horarioFin:''
   });
 
   
@@ -34,9 +39,15 @@ function UsuarioPages() {
     setMostrarEliminar(true);  // Mostrar la ventana modal de confirmación
   };
 
-  const confirmarEliminar = () => {
-    setDatos(datos.filter(dato => dato.id !== usuarioSeleccionado));
-    setMostrarEliminar(false);  // Ocultar la ventana modal después de eliminar
+  const confirmarEliminar = async () => {
+    try {
+      await eliminarUsuario({id: usuarioSeleccionado})
+      setDatos(datos.filter(dato => dato.id !== usuarioSeleccionado));
+      setMostrarEliminar(false);  // Ocultar la ventana modal después de eliminar
+    } catch (error) {
+      console.log(error)
+    }
+
   };
 
   const actualizarDato = (id) => {
@@ -53,9 +64,18 @@ function UsuarioPages() {
     });
   };
 
-  const confirmarActualizar = () => {
-    setDatos(datos.map(dato => (dato.id === formActualizar.id ? formActualizar : dato)));
-    setMostrarActualizar(false);  // Ocultar la ventana modal después de actualizar
+  const confirmarActualizar = async () => {
+    try {
+      
+      console.log("soy formularioActualizar" )
+      console.log(formActualizar)
+      await actualizarUsuario(formActualizar)
+      setDatos(datos.map(dato => (dato.id === formActualizar.id ? formActualizar : dato)));
+      setMostrarActualizar(false);  // Ocultar la ventana modal después de actualizar
+    } catch (error) {
+      console.log(error)
+    }
+
   };
 
   return (
@@ -153,36 +173,79 @@ function UsuarioPages() {
         <div className="modal">
           <div className="modal-content">
             <h3>Actualizar Usuario</h3>
-            {usuarioInterfaz === 'Administrador' && (
+            <label htmlFor="nombre">Nombre</label>
               <input
-                name="telefono"
-                value={formActualizar.telefono}
+                name="usuario"
+                value={formActualizar.usuario}
                 onChange={manejarCambio}
                 placeholder="Teléfono"
               />
-            )}
+              <label htmlFor="correo">Correo</label>
             <input
               name="correo"
               value={formActualizar.correo}
               onChange={manejarCambio}
               placeholder="Correo"
             />
-            {user.rol === 'empleado' && (
+            <label htmlFor="telefono">Telefono</label>
               <input
                 name="telefono"
                 value={formActualizar.telefono}
                 onChange={manejarCambio}
                 placeholder="Teléfono"
               />
+              <label htmlFor="fechaNacimiento">Fecha Nacimiento</label>
+            <input
+            
+              type='date'
+              name="fechaNacimiento"
+              value={formActualizar.fechaNacimiento}
+              onChange={manejarCambio}
+              placeholder="fecha Nacimiento"
+            />
+            {usuarioInterfaz === 'Empleado' && (
+              <div>
+                <label htmlFor="salario">Salario</label>
+              <input
+                name="salario"
+                value={formActualizar.salario}
+                onChange={manejarCambio}
+                placeholder="salario"
+              />
+              </div>
+            )}
+            {usuarioInterfaz === 'Empleado' && (
+              <div>
+                <label htmlFor="horarioInicio">Hora Entrada</label>
+              <input
+              type='time'
+                name="horarioInicio"
+                value={formActualizar.horarioInicio}
+                onChange={manejarCambio}
+                placeholder="horarioInicio"
+              />
+              </div>
+            )}
+            {usuarioInterfaz === 'Empleado' && (
+              <div>
+                <label htmlFor="horarioFin">Horario Salida</label>
+              <input
+              type='time'
+                name="horarioFin"
+                value={formActualizar.horarioFin}
+                onChange={manejarCambio}
+                placeholder="horarioFIn"
+              />
+              </div>
             )}
             <select name="genero" value={formActualizar.genero} onChange={manejarCambio}>
-              <option value="masculino">Masculino</option>
-              <option value="femenino">Femenino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
             </select>
             <select name="rol" value={formActualizar.rol} onChange={manejarCambio}>
-              <option value="admin">Administrador</option>
-              <option value="user">Encargado</option>
-              <option value="guest">Cliente</option>
+              <option value="Administrador">Administrador</option>
+              <option value="Empleado">Encargado</option>
+              <option value="Cliente">Cliente</option>
             </select>
             <button className="btn" onClick={confirmarActualizar}>Aceptar</button>
             <button className="btn" onClick={() => setMostrarActualizar(false)}>Cancelar</button>

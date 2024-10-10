@@ -26,4 +26,4 @@ const Categoria = db.define('Categoria', {
 Categoria.hasMany(Categoria, { as: 'Subcategorias', foreignKey: 'CategoriaPadreID' });
 Categoria.belongsTo(Categoria, { as: 'CategoriaPadre', foreignKey: 'CategoriaPadreID' });
 
-module.exports = Categoria;
+export default Categoria;

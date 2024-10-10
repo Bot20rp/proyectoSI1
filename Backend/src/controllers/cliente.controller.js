@@ -33,7 +33,7 @@ export const registrarCliente = async (req, res) => {
       Contrasena: hashedPassword,
       FechaNacimiento,
       Sexo,
-      RolID: 1, // Rol de cliente
+      RolID: 3, // Rol de cliente
     });
 
     // Asociar el número de documento al usuario
