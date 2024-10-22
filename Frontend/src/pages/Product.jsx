@@ -38,7 +38,7 @@ export  const Product = () => {
     {/*   <ProductReviews selectedProduct={selectedProduct} /> */}
       <section className="related-products">
         <div className="custom-container">
-          <h3>You might also like</h3>
+          <h3>PRoducto que te podian interesar</h3>
         </div>
         <ShopList productItems={relatedProducts} />
       </section>

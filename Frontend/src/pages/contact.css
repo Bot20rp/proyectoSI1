@@ -14,7 +14,7 @@ body{
 	position: relative;
 	width: 100%;
 	height: auto;
-	display: flex;
+	/* display: flex; */  /* ............................................................................................. */
 	justify-content: center;
 	align-items: center;
 	padding: 20px 100px;

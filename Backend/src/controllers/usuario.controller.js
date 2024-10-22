@@ -59,7 +59,7 @@ export const obtenerUsuariosConDetalles= async (req, res) => {
   } catch (error) {
     console.error('Error details:', error); // Agregar detalles del error
     res.status(500).json({ message: 'Error al obtener los usuarios', error: error.message });
-  }
+}
 };
 
 export const updateUsuarioG=async (req,res)=>{

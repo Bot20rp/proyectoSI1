@@ -1,23 +1,17 @@
 import React from 'react'
-import { RotatingLines } from 'react-loader-spinner';
+import { RotateLoader } from "react-spinners";
 import './loader.css'
 export const Loader = () => {
   return (
     <>
-    <div className='spinner-container'>
-
-     <RotatingLines
-  visible={true}
-  /* height="96"
-  width="96" */
-  color="#0f3460"
-  strokeWidth="5"
-  animationDuration="0.75"
-  ariaLabel="rotating-lines-loading"
-  wrapperStyle={{}}
-  wrapperClass=""
-  />
-    </div>
+   <div className="piner-container">
+            <RotateLoader
+            color="#0f3460"
+            size={20}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            />
+        </div> 
 
     
     </>

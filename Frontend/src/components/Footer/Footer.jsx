@@ -8,7 +8,7 @@ export const Footer = () => {
                 {/* primera columnaaa */}
             <div className="footerr-col1">
                 <div className="logo">
-                    <img src={logo} alt="logo_licoreria_bunker" />
+                  {/*   <img src={logo} alt="logo_licoreria_bunker" /> */}
                     <h1>EL BUNKER</h1>
 
                 </div>

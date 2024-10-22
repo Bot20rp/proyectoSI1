@@ -1,92 +1,105 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-@media (min-width: 769px) {
-    #body3 {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background: url('../assets/1.jpg') no-repeat center center;
-        background-size: contain;
-        font-family: 'Roboto';
-        /* background-repeat: repeat-x;
-        background-size: contain; 
-        background-attachment: fixed;  */
+/* Contenedor principal del formulario */
+form {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos generales para los campos de entrada */
+  input {
+    width: calc(100% - 40px); /* Ajustar el ancho para dejar espacio para el icono */
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+  
+  /* Estilos para los contenedores de los campos con iconos */
+  div {
+    position: relative;
+  }
+  
+  .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    color: #aaa;
+    font-size: 18px;
+  }
+  
+  /* Botón de envío */
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    form {
+      padding: 20px;
+      max-width: 90%;
     }
-
-
-    .contenedor{
-        color: #fff;
-        border: 2px solid rgba(255, 255, 255, .2);
-        text-align: center;
-        padding: 30px 40px;
+  
+    h1 {
+      font-size: 24px;
     }
-
-    .formulario {
-        width: 425px;
-        background: rgba(0, 0, 0, 0.5);;
-        color: #fff;
-        border: 2px solid rgba(255, 255, 255, .2);
-        border-radius: 20px;
-        text-align: center;
-        padding: 30px 40px;
+  
+    input {
+      font-size: 14px;
     }
-
-    .contenedor h1{
-        font-size: 36px;
-        text-align: center;
+  
+    button {
+      font-size: 16px;
     }
-
-    .contenedor .input-box{
-        position: relative;
-        width: 100%;
-        height: 50px;
-        margin: 30px 0;
+  }
+  
+  @media (max-width: 480px) {
+    input {
+      font-size: 12px;
+      padding: 10px;
     }
-
-    .input-box input{
-        width: 100%;
-        height: 100%;
-        background: transparent;
-        border: none;
-        outline: none;
-        border: 2px solid rgba(255, 255, 255, .2);
-        border-radius: 40px;
-        padding: 20px 45px 20px 20px;
-        color: aliceblue;
-        font-size: 16px;
+  
+    button {
+      font-size: 14px;
     }
-
-    .input-box input::placeholder{
-        color: aliceblue;
+  
+    h1 {
+      font-size: 20px;
     }
-
-    .input-box .icon{
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 16px;
-    }
-
-    .contenedor button{
-        width: 80%;
-        height: 45px;
-        background: #fff;
-        border: none;
-        outline: none;
-        border-radius: 40px;
-        cursor: pointer;
-        font-size: 20px;
-        color: #333;
-        font-weight: 700;
-        font-family: 'Roboto';
-    }
-}
-
-
+  }
+  

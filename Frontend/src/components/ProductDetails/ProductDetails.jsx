@@ -3,7 +3,7 @@ import { CartContext } from '../../context/CartContext'; // Importar el contexto
 import { toast } from 'react-toastify';
 import './productDetails.css';
 import { FaStar } from "react-icons/fa";
-
+import 'font-awesome/css/font-awesome.min.css';
 export const ProductDetails = ({ selectedProduct }) => {
   const { addToCart } = useContext(CartContext); // Usar el contexto
   const [quantity, setQuantity] = useState(1);
@@ -28,10 +28,11 @@ export const ProductDetails = ({ selectedProduct }) => {
             <h2>{selectedProduct?.productName}</h2>
             <div className='rate'>
               <div className='stars'>
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
+              <i className="fa fa-star"></i>
+          <i className="fa fa-star"></i>
+          <i className="fa fa-star"></i>
+          <i className="fa fa-star"></i>
+          <i className="fa fa-star"></i>
               </div>
               <span>{selectedProduct?.avgrating} calificaciones</span>
             </div>

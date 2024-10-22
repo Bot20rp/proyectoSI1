@@ -1,3 +1,18 @@
+.product {
+    background: #fff;
+    padding: 20px;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+    margin: 10px;
+    overflow: hidden; /* Asegura que nada sobresalga */
+    transition: transform 0.3s; /* Añadir transición */
+}
+
+.product:hover {
+    transform: scale(1.05); /* Efecto de hover */
+}
+
 .product img {
     width: 100%;
     height: 200px !important;
@@ -17,15 +32,6 @@
     margin: 10px;
 }
 
-.product {
-    background: #fff;
-    padding: 20px;
-    position: relative;
-    border-radius: 8px;
-    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
-    margin: 10px;
-}
-
 .product h3 {
     margin: 10px 0;
     font-weight: 500;
@@ -33,16 +39,20 @@
     cursor: pointer;
 }
 
+.product .rate {
+    display: flex; /* Cambiar a flex para un mejor alineamiento */
+}
+
 .product .rate i {
     font-size: 15px;
     color: #ffcd4e;
-    margin: 5px 5px 5px 0;
+    margin-right: 5px;
 }
 
 .product .price {
     display: flex;
     justify-content: space-between;
-    align-items:center;
+    align-items: center;
     color: black;
 }
 
@@ -67,14 +77,6 @@
     color: #fff;
 }
 
-button.add {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-    border-radius: 50%;
-}
-
 .product-like {
     position: absolute;
     top: 0;
@@ -82,14 +84,6 @@ button.add {
     margin: 10px;
     opacity: 0;
     transition: 0.5s;
-}
-
-.product-like label {
-    background-color: #0f3460;
-    padding: 1px 10px;
-    font-size: 12px;
-    color: white;
-    border-radius: 50px;
 }
 
 .product-like ion-icon {
@@ -102,19 +96,6 @@ button.add {
     opacity: 1;
 }
 
-.product {
-    width: 83.33%; /* Ocupa 10 de las 12 columnas en pantallas XS (menores de 576px) */
-  }
-  
-  @media (min-width: 576px) { /* Tamaño SM (pequeño) >= 576px */
-    .product{
-      width: 41.67%; /* Ocupa 5 de las 12 columnas en pantallas SM */
-    }
-  }
-  
-  @media (min-width: 768px) { /* Tamaño MD (mediano) >= 768px */
-    .product {
-      width: 25%; /* Ocupa 3 de las 12 columnas en pantallas MD */
-    }
-  }
-  
+.product-details {
+    padding-top: 10px; /* Espaciado entre la imagen y los detalles */
+}

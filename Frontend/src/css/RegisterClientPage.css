@@ -1,3 +1,4 @@
+/* RegisterClientPage.css */
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 * {
@@ -7,9 +8,10 @@
     box-sizing: border-box; /* Asegura que el padding y el border no afecten el ancho total */
     font-family: 'Poppins', sans-serif; /* Aplica la fuente Poppins */
 }
+
 .contenedorClient {
     display: flex;
-    width: 80%;
+    width: 100%; /* Cambia a 100% para asegurar que ocupa el ancho completo */
     min-height: 80vh;
     padding: 20px;
     justify-content: center; /* Centra el contenedor */
@@ -74,8 +76,12 @@
     }
 
     .client {
-        gap: 5px; /* Reduce el espacio entre los elementos */
-        margin: 5px;
+        gap: 10px; /* Aumenta el espacio entre los elementos en pantallas pequeñas */
+    }
+
+    .inputClient {
+        max-width: 100%; /* Permite que los inputs ocupen el ancho completo en pantallas pequeñas */
+        margin: 10px 0; /* Espacio entre inputs en vertical */
     }
 }
 

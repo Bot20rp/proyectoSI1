@@ -123,7 +123,6 @@ import Categoria from '../models/Categoria.js';
   
       // Eliminar la categoría
       await categoria.destroy();
-  
       res.status(200).json({ message: 'Categoría eliminada exitosamente' });
     } catch (error) {
       console.error(error);

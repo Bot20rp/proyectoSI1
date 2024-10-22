@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import { CartContext } from "../context/CartContext"; // Asegúrate de que la ruta sea correcta
 import "./cart.css"; // Asegúrate de crear este archivo CSS
-
+import 'font-awesome/css/font-awesome.min.css';
 export const Cart = () => {
   const { cartList, addToCart, decreaseQty, deleteProduct } = useContext(CartContext); // Usar el contexto
 
@@ -31,8 +31,8 @@ export const Cart = () => {
                 <div className="cart-details">
                   <h3>{item.productName}</h3>
                   <h4>
-                    ${item.price}.00 * {item.qty}
-                    <span>${productQty}.00</span>
+                    Bs{item.price}.00 * {item.qty}
+                    <span>Bs{productQty}.00</span>
                   </h4>
                 </div>
                 <div className="cart-control">
@@ -41,6 +41,7 @@ export const Cart = () => {
                     onClick={() => addToCart(item, 1)} // Cambiar para usar el contexto
                   >
                     <i className="fa-solid fa-plus"></i>
+                   
                   </button>
                   <button
                     className="desCart"
@@ -63,7 +64,7 @@ export const Cart = () => {
           <h2>Carritoo</h2>
           <div className="total-price">
             <h4>Total precio :</h4>
-            <h3>${totalPrice}.00</h3>
+            <h3>Bs{totalPrice}.00</h3>
           </div>
         </div>
       </div>

@@ -33,8 +33,7 @@ import licor5 from "../Img/licores-5.jpeg";
 import licor8 from "../Img/licores-8.jpeg";
 import licor7 from "../Img/licores-7.jpeg";
 
-
-
+// jorgeeee
 
 import bebidaaperitivo1 from "../Img/bebidaaperitivo-1.jpeg";
 import bebidaaperitivo2 from "../Img/bebidaaperitivo-2.jpeg";
@@ -45,25 +44,25 @@ import bebidaespirituosa1 from "../Img/bebidaespirituosa-1.jpeg";
 export const SliderData = [
   {
       id: 1,
-      title: "50% Off For Your First Shopping",
+      title: "combo1",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lobortis consequat eu, quam etiam at quis ut convallis.",
       cover: productImg05,
   },
   {
       id: 2,
-      title: "50% Off For Your First Shopping",
+      title: "combo2",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lobortis consequat eu, quam etiam at quis ut convallis.",
       cover: bebidaaperitivo1,
   },
   {
       id: 3,
-      title: "660% Off For Your First Shopping",
+      title: "combo3",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lobortis consequat eu, quam etiam at quis ut convallis.",
       cover: vino2,
   },
   {
       id: 4,
-      title: "70% Off For Your First Shopping",
+      title: "comboo4",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lobortis consequat eu, quam etiam at quis ut convallis.",
       cover: vino3,
   },
@@ -73,25 +72,25 @@ export const SliderData = [
 export const serviceData = [
   {
    /*  icon: <ion-icon name="car"></ion-icon>, */
-    title: "Free Shipping",
+    title: "loremmmmmmmm",
     subtitle: "Lorem ipsum dolor sit amet.",
     bg: "#fdefe6",
   },
   {
  /*    icon: <ion-icon name="card"></ion-icon>, */
-    title: "Safe Payment",
+    title: "loremmmmmmmmt",
     subtitle: "Lorem ipsum dolor sit amet.",
     bg: "#ceebe9",
   },
   {
    /*  icon: <ion-icon name="shield-half-outline"></ion-icon>, */
-    title: "Secure Payment",
+    title: "loremmmmmmmm",
     subtitle: "Lorem ipsum dolor sit amet.",
     bg: "#e2f2b2",
   },
   {
 /*     icon: <ion-icon name="headset"></ion-icon>, */
-    title: " Back Guarantee",
+    title: " loremmmmmmmm",
     subtitle: "Lorem ipsum dolor sit amet.",
     bg: "#d6e5fb",
   },

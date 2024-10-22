@@ -1,5 +1,5 @@
 import React from "react";
-import "./wapper.css"; // Asegúrate de que este archivo contenga los estilos CSS.
+import "./wapper.css";  
 import {serviceData} from '../../utils/products'
 export const Wrapper = () => {
   return (

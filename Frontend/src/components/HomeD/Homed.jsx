@@ -17,7 +17,8 @@ import CategoriaProductPage from '../../pages/CategoriaProductPage'
 import RegisterEmplead from "../../pages/RegisterEmplead";
 import "./homed.css";
 import LoginPage from "../../pages/LoginPage";
-
+import {Bitacora} from '../../pages/Bitacora'
+import {Lote} from '../../pages/Lote'
 export const Homed = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
  
@@ -37,6 +38,9 @@ export const Homed = () => {
         <Route path="/categoriaproducto" element={<CategoriaProductPage/>}  />
         <Route path="/empleadRegister" element={<RegisterEmplead/>}  />
         <Route path="/login" element={<LoginPage/>}  />
+        <Route path="/bitacora" element={<Bitacora/>}  />
+        <Route path="/lote" element={<Lote/>}  />
+        
       </Routes>
 
 

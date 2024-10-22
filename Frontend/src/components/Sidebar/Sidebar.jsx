@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AiOutlineLeft,
   AiOutlineHome,
@@ -9,20 +9,50 @@ import { MdOutlineAnalytics, MdLogout } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./sidebar.css";
 import { useAuth } from "../../context/AuthContext"; // Importa useAuth
+import instance from '../../api/axios' ; 
+
+
 
 export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
+
+
+
   const { logout } = useAuth(); // Usa el método logout
   const navigate = useNavigate(); // Hook para redirección
+
+  // Estado para manejar dropdowns
+  const [isPaquete1Open, setIsPaquete1Open] = useState(false);
+  const [isPaquete2Open, setIsPaquete2Open] = useState(false);
+  const [isPaquete30pen, setIsPaquete30pen] = useState(false)
 
   const ModSidebaropen = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  const handleLogout = () => {
-    logout(); // Llama a logout del contexto
+
+  const bit = {
+    UsuarioID : null ,
+    message : '' 
+
+  }; 
+
+  const handleLogout = async () => {
+    await  logout(); // Llama a logout del contexto
     navigate("/login"); // Redirige al login después de cerrar sesión
   };
 
+
+
+
+
+
+
+
+
+
+
+
+  
   return (
     <div className={`sidebar-container ${sidebarOpen ? "open" : "closed"}`}>
       <button className="sidebar-button" onClick={ModSidebaropen}>
@@ -36,30 +66,16 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         <h2>{sidebarOpen ? "" : ""}</h2>
       </div>
 
-      {/* Mapeo de enlaces principales */}
-      {enlaceprincipal.map(({ label, icon, to }) => (
-        <div className="link-container" key={label}>
-          <NavLink
-            to={to}
-            className={({ isActive }) => `links${isActive ? " active" : ""}`}
-          >
-            <div className="link-icon">{icon}</div>
-            {sidebarOpen && <span>{label}</span>}
-          </NavLink>
-        </div>
-      ))}
-
-      <div className="divider"></div>
-
-      {/* Mapeo de enlaces secundarios */}
-      {enlacesecundario.map(({ label, icon, to }) => (
-        <div className="link-container" key={label}>
-          {label === "Salir" ? (
-            <button onClick={handleLogout} className="links">
-              <div className="link-icon">{icon}</div>
-              {sidebarOpen && <span>{label}</span>}
-            </button>
-          ) : (
+      {/* Paquete 1 - Adm. Usuario */}
+      <div
+        className="link-container"
+        onClick={() => setIsPaquete1Open(!isPaquete1Open)}
+      >
+        <h3 className="dropdown-label">Adm. Usuario</h3>
+      </div>
+      {isPaquete1Open &&
+        enlaceprincipal.map(({ label, icon, to }) => (
+          <div className="link-container" key={label}>
             <NavLink
               to={to}
               className={({ isActive }) => `links${isActive ? " active" : ""}`}
@@ -67,9 +83,78 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <div className="link-icon">{icon}</div>
               {sidebarOpen && <span>{label}</span>}
             </NavLink>
-          )}
-        </div>
-      ))}
+          </div>
+        ))}
+
+      <div className="divider"></div>
+
+      {/* Paquete 2 - Adm. Invent. */}
+      <div
+        className="link-container"
+        onClick={() => setIsPaquete2Open(!isPaquete2Open)}
+      >
+        <h3 className="dropdown-label">Adm. Invent.</h3>
+      </div>
+      {isPaquete2Open &&
+        enlaceinventario.map(({ label, icon, to }) => (
+          <div className="link-container" key={label}>
+            <NavLink
+              to={to}
+              className={({ isActive }) => `links${isActive ? " active" : ""}`}
+            >
+              <div className="link-icon">{icon}</div>
+              {sidebarOpen && <span>{label}</span>}
+            </NavLink>
+          </div>
+        ))}
+
+      <div className="divider"></div>
+
+      {/* Paquete 3 - Ventas (vacío por ahora) */}
+      <div className="link-container" onClick={() => {}}>
+        <h3 className="dropdown-label">Ventas</h3>
+      </div>
+
+      <div className="divider"></div>
+
+      {/* Paquete 4 - Compras (vacío por ahora) */}
+      <div className="link-container" onClick={() => setIsPaquete30pen(!isPaquete30pen)}>
+        <h3 className="dropdown-label">Compras</h3>
+      </div>
+      {isPaquete30pen &&
+        enlacecompra.map(({ label, icon, to }) => (
+          <div className="link-container" key={label}>
+            <NavLink
+              to={to}
+              className={({ isActive }) => `links${isActive ? " active" : ""}`}
+            >
+              <div className="link-icon">{icon}</div>
+              {sidebarOpen && <span>{label}</span>}
+            </NavLink>
+          </div>
+        ))}
+
+      <div className="divider"></div>
+
+      {/* Configuración y Salir */}
+      <div className="link-container">
+        <NavLink
+          to="/dashboard/configuracion" // Ruta de configuración
+          className={({ isActive }) => `links${isActive ? " active" : ""}`}
+        >
+          <div className="link-icon"><AiOutlineSetting /></div>
+          {sidebarOpen && <span>Configuración</span>}
+        </NavLink>
+      </div>
+
+
+      {/*  salirrrrrr */}
+      <div className="link-container">
+        <button onClick={handleLogout} className="links">
+          <div className="link-icon"><MdLogout /></div>
+          {sidebarOpen && <span>Salir</span>}
+        </button>
+      </div>
 
       <div className="divider"></div>
     </div>
@@ -79,7 +164,7 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 const enlaceprincipal = [
   {
     label: "Home",
-    icon: <AiOutlineHome />,
+    icon: <MdOutlineAnalytics />,
     to: "/dasboard/homeda", // Corregido a "dashboard"
   },
   {
@@ -88,32 +173,46 @@ const enlaceprincipal = [
     to: "/dasboard/usuarioGestion", // Corregido a "dashboard"
   },
   {
-    label: "Empleados",
-    icon: <AiOutlineApartment />,
-    to: "/dasboard/empleadRegister", // Corregido a "dashboard"
-  },
-  {
     label: "Clientes",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/clientRegister", // Corregido a "dashboard"
-  },
-  {
-    label: "Categorias",
-    icon: <MdOutlineAnalytics />,
-    to: "/dasboard/categoriaproducto", // Corregido a "dashboard"
-  },
-  {
-    label: "Productos",
-    icon: <MdOutlineAnalytics />,
-    to: "/dasboard/products", // Corregido a "dashboard"
   },
   {
     label: "Proveedores",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/proveedorRegister", // Corregido a "dashboard"
   },
+  {
+    label: "Empleados",
+    icon: <AiOutlineApartment />,
+    to: "/dasboard/empleadRegister", // Corregido a "dashboard"
+  },
+  {
+    label: "Bitacora",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/bitacora", // Corregido a "dashboard"
+  },
 ];
 
+const enlaceinventario = [
+  {
+    label: "Productos",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/products", // Corregido a "dashboard"
+  },
+  {
+    label: "Categorias",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/categoriaproducto", // Corregido a "dashboard"
+  },
+];
+const enlacecompra = [
+  {
+    label: "Lotes",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/lote",
+  }
+];
 const enlacesecundario = [
   {
     label: "Configuración",

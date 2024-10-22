@@ -110,20 +110,19 @@ body {
 .modificarProveedor:hover {
     background-color: #1976D2; /* Color más oscuro al pasar el mouse */
 }
+
 .RegistroProveedor {
     display: none; /* Esconde el modal por defecto */
 }
 
 .RegistroProveedor.show {
     display: block; /* Muestra el modal */
-    /* Puedes agregar más estilos para centrar el modal */
 }
 
 .containerProveedor.show2 {
     opacity: 0.5; /* Estilo para el fondo cuando el modal está activo */
     pointer-events: none; /* Desactiva interacciones en el fondo */
 }
-
 
 .modaEProveedor {
     background-color: white;
@@ -165,24 +164,18 @@ input:focus {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 10px; /* Espacio superior */
-    transition: background-color 0.3s;
-}
-
-.saveProveedor:hover {
-    background-color: #45a049; /* Color más oscuro al pasar el mouse */
+    margin-top: 10px;
 }
 
 .closeProveedor {
     padding: 10px 20px;
-    background-color: #f44336; /* Color para cerrar */
+    background-color: #f44336; /* Color de fondo para cerrar */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 10px; /* Espacio superior */
-    transition: background-color 0.3s;
+    margin-top: 10px;
 }
 
 .closeProveedor:hover {

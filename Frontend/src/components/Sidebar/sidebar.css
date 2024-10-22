@@ -16,7 +16,7 @@
     color: var(--text-color);
     background: var(--bg-color);
     position: sticky;
-    padding-top: 20px;
+    padding-top: 30px;
   }
   
   .sidebar-button {
@@ -58,6 +58,8 @@
   .link-container {
     margin: 8px 0;
     padding: 0 15%;
+ 
+
   }
   
   .link-container:hover {
@@ -93,3 +95,15 @@
     margin: 24px 0; /* lgSpacing */
   }
 
+  .dropdown-label {
+    cursor: pointer;
+    padding: 10px 15%;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-color);
+  }
+  
+  .link-container {
+    display: flex;
+    flex-direction: column;
+  }

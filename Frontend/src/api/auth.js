@@ -4,6 +4,7 @@ import axios from "./axios"
 
 export const registerRequest = user => axios.post(`/clientReg`,user) 
 export const loginRequest = user => axios.post(`/login`,user)
+export const logoutRequest= ()=>axios.post('/logout')
 export const obtenerRequest = () => { return axios.get('/obtener')};
 export const verityTokenResquest = () => axios.get('/verify')
 export const actualizarUsuario = user => axios.patch(`/usuario/actualizar`,{data :user ,
@@ -11,7 +12,6 @@ export const actualizarUsuario = user => axios.patch(`/usuario/actualizar`,{data
         'Content-Type': 'application/json', 
     },
 });
-
 export const eliminarUsuario = user => axios.delete('/usuario/del',{ data : user,
     headers: {
         'Content-Type': 'application/json', 
@@ -77,3 +77,13 @@ export const actualizarProducto = user => axios.patch(`/producto/actualizar`,{da
         'Content-Type': 'application/json', 
     },
 });
+
+
+// BITACORA 
+/* export const bitacoraa = user => axios.post(`/crearbitacora`, { data: user ,
+    headers:{
+        'Content-Type': 'application/json', 
+    },
+}) */;
+
+export const bitacoraa = () => axios.get(`/bitacora`) 

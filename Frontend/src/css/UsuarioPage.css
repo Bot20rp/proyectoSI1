@@ -1,174 +1,136 @@
+/* UsuarioPage.css */
+
+/* Contenedor principal */
 .containerUsuario {
     width: 100%;
-    height: 100vh;
-    background-color: #f0f0f0; /* Color de fondo más claro */
-    padding: 30px;
-}
-
-.ventanaUser {
-    display: flex;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Ventana de usuarios */
+  .ventanaUser {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Título */
+  #title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Estilo de los inputs y selects */
+  .inputUser-group {
+    margin-bottom: 15px;
+  }
+  
+  .inputUser-box {
+    width: calc(33% - 10px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 10px;
+    transition: border 0.3s;
+  }
+  
+  .inputUser-box:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Botón */
+  .btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Lista de usuarios */
+  .listaUsuarios {
+    margin-top: 20px;
+    overflow-x: auto; /* Para hacer scroll si es necesario */
+  }
+  
+  .table {
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    align-content: center;
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-}
-
-#title {
-    font-family: 'Courier New', Courier, monospace;
-    color: #fff;
-}
-
-.inputUser-group {
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #f8f8f8;
+    color: #555;
+  }
+  
+  .table-item {
+    font-weight: bold;
+  }
+  
+  .table-item2 {
+    color: #666;
+  }
+  
+  /* Estilo de las opciones */
+  #option {
     display: flex;
     gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-
-/* Para pantallas menores o iguales a 768px (<= 768px) */
-@media (max-width: 768px) {
-    .inputUser-box {
-        width: 75%;
-        padding: 10px;
-        margin: 0 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        font-size: 16px;
-    }
-    .inputUser-group {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-}
-
-/* Para pantallas mayores o iguales a 768px (>= 768px) */
-@media (min-width: 768px) {
-    .inputUser-box {
-        width: 25%;
-        padding: 10px;
-        margin: 0 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        font-size: 16px;
-    }
-}
-
-.listaUsuarios{
-    height: 100%;
-    background: #fff;
-    border-radius: 20px;
-    padding: 10px;
-    overflow-y: auto;
-}
-
-.table {
-    width: 100%; 
-    text-align: center; 
-}
-
-.table-item {
-    display: inline-block; 
-    width: 13%; 
-    margin: 2px; 
-    box-sizing: border-box; 
-    background-color: rgb(56, 66, 207); 
-    text-align: center; 
-}
-
-.table-item2 {
-    display: inline-block; 
-    width: 13%; 
-    margin: 2px; 
-    box-sizing: border-box; 
-    background-color: rgb(225, 221, 221);
-    text-align: center; 
-    overflow: hidden; /* Oculta el contenido que se desborda */
-    text-overflow: ellipsis; /* Añade "..." al final si hay desbordamiento */
-    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
-}
-
-
-.buttonOpcion {
-    padding: 0;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-    
-    transition: transform 0.3s ease; /* Animación suave al escalar */
-}
-
-.buttonOpcion:hover {
-    transform: scale(0.85); /* Escala el botón a un 95% de su tamaño */
-}
-
-.buttonOpcion:active {
-    transform: scale(0.8); /* Escala el botón a un 90% de su tamaño cuando se hace click */
-}
-
-
-select.inputUser-box {
-    display: flex;
-    background-color: #fff;
-    cursor: pointer;
-}
-
-.btn {
-    max-width: 150px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.btn:hover {
-    background-color: #45a049;
-}
-
-.btnEliminar:hover{
-    cursor: pointer;
-    background-color: #a2c5a4;
-}
-
-.modal {
+  }
+  
+  /* Modal */
+  .modal {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
   }
   
   .modal-content {
-    background-color: white;
+    background-color: #fff;
     padding: 20px;
-    border-radius: 10px;
-    width: 500px;
-    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Ajusta según sea necesario */
   }
   
-  .modal-content input, .modal-content select {
+  /* Estilo de los formularios en el modal */
+  .modal-content input {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
-    text-align: center;
+    border-radius: 4px;
   }
+  
+  .modal-content h3 {
+    margin-bottom: 15px;
+  }
+  
+  /* Estilo de los botones en el modal */
+  .modal-content .btn {
+    margin-right: 10px;
+  }
+  

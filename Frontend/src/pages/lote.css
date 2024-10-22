@@ -1,0 +1,168 @@
+/* Contenedor principal */
+.container {
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #f9f9f9; /* Fondo suave */
+  border-radius: 8px;
+}
+
+/* Estilos para la gestión de lote */
+.gestion-lote,
+.consultar-lotes {
+  background-color: #ffffff; /* Fondo blanco */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Títulos */
+.gestion-lote h2,
+.consultar-lotes h2 {
+  margin-bottom: 15px;
+  color: #333; /* Color más oscuro para los títulos */
+  font-size: 24px; /* Tamaño de fuente aumentado */
+}
+
+/* Estilo para la tabla principal */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px; /* Espacio entre las tablas */
+}
+
+/* Estilo para las celdas de la tabla */
+th,
+td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+  background-color: #f2f2f2; /* Fondo de celdas */
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+th {
+  background-color: #e9ecef; /* Fondo diferente para encabezados */
+  color: #333; /* Color más oscuro para encabezados */
+}
+
+/* Efecto de hover para filas de tabla */
+tr:hover td {
+  background-color: #d4edda; /* Color al pasar el ratón */
+}
+
+/* Estilos para búsqueda */
+.buscar-producto {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.buscar-producto input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px; /* Tamaño de fuente más grande */
+  transition: border-color 0.3s;
+}
+
+.buscar-producto input:focus {
+  border-color: #4CAF50; /* Color de borde al enfocar */
+  outline: none; /* Sin contorno */
+}
+
+/* Botones */
+.guardar-btn,
+.ordenar-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* Tamaño de fuente más grande */
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+.guardar-btn {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+}
+
+.guardar-btn:hover {
+  background-color: #45a049; /* Color más oscuro al pasar el ratón */
+}
+
+.ordenar-btn {
+  background-color: #1E90FF; /* Azul */
+  color: white;
+  margin-bottom: 10px; /* Espacio debajo del botón */
+}
+
+.ordenar-btn:hover {
+  background-color: #1c7ed6; /* Color más oscuro al pasar el ratón */
+}
+
+/* Estilos adicionales para textos destacados */
+.highlighted {
+  color: #e74c3c; /* Rojo más intenso */
+  font-weight: bold; /* Negrita para destacar */
+}
+
+/* Media Queries para hacer el diseño responsive */
+@media (max-width: 768px) {
+  /* Cambiar la dirección de flex a columna en pantallas más pequeñas */
+  .container {
+    padding: 10px;
+  }
+
+  /* Estilo para los encabezados */
+  .gestion-lote h2,
+  .consultar-lotes h2 {
+    font-size: 20px; /* Reducir tamaño de fuente en móviles */
+  }
+
+  /* Ajustar padding de las celdas de la tabla */
+  th,
+  td {
+    padding: 10px; /* Reducir padding en móviles */
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+  }
+
+  /* Cambiar el diseño de la búsqueda a columna */
+  .buscar-producto {
+    flex-direction: column; /* Cambiar a columna */
+    gap: 5px; /* Reducir espacio entre elementos */
+  }
+
+  .buscar-producto input {
+    width: 100%; /* Asegurar que el input ocupe todo el ancho */
+  }
+
+  /* Botones */
+  .guardar-btn,
+  .ordenar-btn {
+    width: 100%; /* Asegurar que los botones ocupen todo el ancho */
+    padding: 12px; /* Aumentar padding en móviles */
+    font-size: 18px; /* Aumentar tamaño de fuente en móviles */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustar el tamaño de fuente y padding en pantallas muy pequeñas */
+  th,
+  td {
+    font-size: 12px; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+  }
+
+  .gestion-lote h2,
+  .consultar-lotes h2 {
+    font-size: 18px; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+  }
+
+  .guardar-btn,
+  .ordenar-btn {
+    padding: 10px; /* Ajustar padding en botones */
+  }
+}

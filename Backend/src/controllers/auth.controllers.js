@@ -5,6 +5,8 @@ import { createAccesToken } from '../libs/tokens.js';
 import jwt from 'jsonwebtoken'
 import Rol from '../models/Rol.js';
 
+import { createBitacora } from './bitacora.controllers.js';
+
 export const login = async (req, res) => {
     const { email, password } = req.body;
     
@@ -39,6 +41,11 @@ export const login = async (req, res) => {
                 rol: existUser.Rol.Nombre
             }
         })
+        //registrar en la  bitacora
+        const message="inicion Sesion"
+        const UsuarioID=existUser.UsuarioID
+        console.log(req.body)
+        await createBitacora({UsuarioID,message},res);
         
     } catch (error) {
         console.error(error);
@@ -46,11 +53,16 @@ export const login = async (req, res) => {
     }
 };
 
-export const logout = (req,res) => {
-    res.cookie('token',"",{
+export const logout = async (req,res) => {
+    const message="Cerrar Sesion"
+    const UsuarioID=req.user.id;
+    await createBitacora({UsuarioID,message},res);
+    res.cookie("token", "", {
+        httpOnly: true,
+        secure: true,
         expires: new Date(0),
-    })
-    return res.sendStatus(200);
+      });
+      return res.sendStatus(200);
 }
 
 export const verifyToken = async (req,res) => {
@@ -82,5 +94,18 @@ export const verifyToken = async (req,res) => {
 
         })
     })
+
+};
+
+export const authenticateToken = async (req,res,next) => {
+    console.log(req.cookies)
+    const {token} = req.cookies
+
+    if(!token) return res.status(401).json({message:"nega token"});
+    jwt.verify(token, process.env.JWT_SECRETO, (err, user) => {
+        if (err) return res.sendStatus(403); // Si hay un error, responde con un 403
+        req.user = user; // Almacena la información del usuario en req.user
+        next(); // Llama al siguiente middleware
+    });
 
 };

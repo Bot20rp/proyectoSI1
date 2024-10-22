@@ -15,7 +15,7 @@ export const Navbar = () => {
   return (
     <>
       <nav className="navbar">
-        <h3 className="logo">Logo</h3>
+        <h3 className="logo">"El Bunker"</h3>
 
         {/* Enlaces de navegación */}
         <ul

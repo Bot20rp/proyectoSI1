@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { loginRequest, verityTokenResquest,obtenerRequest,obtenerRequestProveedor } from "../api/auth";
+import { loginRequest,logoutRequest, verityTokenResquest,obtenerRequest,obtenerRequestProveedor } from "../api/auth";
 import Cookies from 'js-cookie';
 
 
@@ -41,10 +41,12 @@ export const useAuth = () => {
       }
     };
 
-    const logout = () => {
-      Cookies.remove('token'); 
-      setUser(null);           
+    /*  ---------   */
+    const logout =async () => {
+      const cookies = Cookies.get();
+      await logoutRequest(cookies);
       setEsAutenticado(false);
+      setUser(null);           
       setRol(null);            
       setTableUser([]);        
       // navigate('/login');    

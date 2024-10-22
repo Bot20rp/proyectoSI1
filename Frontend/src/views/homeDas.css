@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f0f0f0; /* Fondo suave para toda la página */
+}
+
+.containerHome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centrar contenido verticalmente */
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    padding: 20px;
+    text-align: center;
+}
+
+.welcomeMessage {
+    font-size: 2.5em;
+    color: #2a1515; /* Color oscuro para el mensaje de bienvenida */
+    margin-bottom: 20px;
+}
+
+.profileCard {
+    background-color: #ffffff; /* Fondo blanco para la tarjeta del perfil */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    width: 300px; /* Ancho fijo para la tarjeta */
+}
+
+.userRole {
+    font-size: 1.8em;
+    color: #4CAF50; /* Color llamativo para el rol del usuario */
+    margin-bottom: 10px;
+}
+
+.userEmail {
+    font-size: 1.2em;
+    color: #555; /* Color gris para el email */
+    margin-top: 5px;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .welcomeMessage {
+        font-size: 2em; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+    }
+
+    .profileCard {
+        width: 90%; /* Ocupar más ancho en pantallas pequeñas */
+    }
+
+    .userRole {
+        font-size: 1.5em; /* Tamaño de fuente más pequeño para el rol */
+    }
+
+    .userEmail {
+        font-size: 1em; /* Tamaño de fuente más pequeño para el email */
+    }
+}
