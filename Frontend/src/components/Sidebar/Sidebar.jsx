@@ -9,7 +9,7 @@ import { MdOutlineAnalytics, MdLogout } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./sidebar.css";
 import { useAuth } from "../../context/AuthContext"; // Importa useAuth
-import instance from '../../api/axios' ; 
+import instance from '../../api/axios';
 
 
 
@@ -23,7 +23,8 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   // Estado para manejar dropdowns
   const [isPaquete1Open, setIsPaquete1Open] = useState(false);
   const [isPaquete2Open, setIsPaquete2Open] = useState(false);
-  const [isPaquete30pen, setIsPaquete30pen] = useState(false)
+  const [isPaquete30pen, setIsPaquete30pen] = useState(false);
+  const [isPaquete40pen, setIsPaquete40pen] = useState(false);
 
   const ModSidebaropen = () => {
     setSidebarOpen(!sidebarOpen);
@@ -31,13 +32,13 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
 
   const bit = {
-    UsuarioID : null ,
-    message : '' 
+    UsuarioID: null,
+    message: ''
 
-  }; 
+  };
 
   const handleLogout = async () => {
-    await  logout(); // Llama a logout del contexto
+    await logout(); // Llama a logout del contexto
     navigate("/login"); // Redirige al login después de cerrar sesión
   };
 
@@ -52,7 +53,7 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
 
 
-  
+
   return (
     <div className={`sidebar-container ${sidebarOpen ? "open" : "closed"}`}>
       <button className="sidebar-button" onClick={ModSidebaropen}>
@@ -111,17 +112,31 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       <div className="divider"></div>
 
       {/* Paquete 3 - Ventas (vacío por ahora) */}
-      <div className="link-container" onClick={() => {}}>
+      <div className="link-container" onClick={() => setIsPaquete40pen(!isPaquete40pen)}>
         <h3 className="dropdown-label">Ventas</h3>
       </div>
-
+      {
+        isPaquete40pen &&
+        enlaceventa.map(({ label, icon, to }) => (
+          <div className="link-container" key={label}>
+            <NavLink
+              to={to}
+              className={({ isActive }) => `links${isActive ? " active" : ""}`}
+            >
+              <div className="link-icon">{icon}</div>
+              {sidebarOpen && <span>{label}</span>}
+            </NavLink>
+          </div>
+        ))
+      }
       <div className="divider"></div>
 
       {/* Paquete 4 - Compras (vacío por ahora) */}
       <div className="link-container" onClick={() => setIsPaquete30pen(!isPaquete30pen)}>
         <h3 className="dropdown-label">Compras</h3>
       </div>
-      {isPaquete30pen &&
+      {
+        isPaquete30pen &&
         enlacecompra.map(({ label, icon, to }) => (
           <div className="link-container" key={label}>
             <NavLink
@@ -132,7 +147,8 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               {sidebarOpen && <span>{label}</span>}
             </NavLink>
           </div>
-        ))}
+        ))
+      }
 
       <div className="divider"></div>
 
@@ -157,7 +173,7 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       </div>
 
       <div className="divider"></div>
-    </div>
+    </div >
   );
 };
 
@@ -225,3 +241,11 @@ const enlacesecundario = [
     // No necesita `to`, ya que el botón manejará el logout manualmente
   },
 ];
+
+const enlaceventa =[
+  {
+    label: "Combos",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/combos",
+  }
+]

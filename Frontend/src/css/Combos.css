@@ -1,0 +1,193 @@
+/* Combos.css */
+.contenedorCombo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    background-color: #f7f9fc;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.comboContenedor {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.comboContenedor h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.comboContenedor input[type="text"],
+.comboContenedor input[type="number"],
+.comboContenedor input[type="date"] {
+    width: 50%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.comboContenedor input[type="text"]:focus,
+.comboContenedor input[type="number"]:focus,
+.comboContenedor input[type="date"]:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+}
+
+.ParaCombo {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.ParaCombo input[type="text"] {
+    width: 48%;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 25px;
+    /* margin-top: 20px; */
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.tablaCombo {
+    margin-top: 30px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tablaScroll {
+    max-height: auto; 
+    overflow-y: auto;
+}
+
+.tablaScroll table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tablaScroll th, 
+.tablaScroll td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.tablaScroll th {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+.tablaScroll tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.costos {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.costos input[type="number"] {
+    width: 30%;
+}
+
+.duracionCombo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.duracionCombo input[type="date"] {
+    width: 30%;
+}
+
+
+@media (max-width: 768px) {
+    .comboContenedor {
+        padding: 20px;
+    }
+
+    .ParaCombo input[type="text"] {
+        width: 100%;
+    }
+
+    .costos input[type="number"],
+    .duracionCombo input[type="date"] {
+        width: 100%;
+    }
+
+    .costos,
+    .duracionCombo {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+
+.ParaCombo {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative; /* Necesario para controlar la posición de la lista de sugerencias */
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.sugerencias {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    position: absolute;
+    width: calc(100% - 20px); /* Se ajusta a todo el ancho del contenedor */
+    z-index: 1000;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    top: 100%; /* Asegura que la lista aparezca justo debajo del input */
+}
+
+.sugerencias li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.sugerencias li:hover {
+    background-color: #83eaee;
+}

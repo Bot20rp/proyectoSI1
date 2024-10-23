@@ -3,7 +3,7 @@
   .containe12 {
     display: grid;
     grid-template-columns: 90px auto; /* Ancho del sidebar */
-    background: #f9d0d0;
+    /* background: #ffff; */
     transition: all 0.3s;
 }
 

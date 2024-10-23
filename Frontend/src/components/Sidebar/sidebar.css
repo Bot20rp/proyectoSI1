@@ -1,7 +1,7 @@
 :root {
     --text-color: #333; /* Color de texto */
-   /*  --bg-color: #fff; */ /* Color de fondo */
-    --bg-color:   #bbb4b4; /* Color de fondo */
+   /*  --bg-color: #fff;  /* Color de fondo */
+    --bg-color:   #bbb4b4; 
     --bg3: #f0f0f0; /* Color de fondo 3 */
     --bg4: #007bff; /* Color de fondo 4 */
     --bg-tgderecha: #eee; /* Color de fondo de la barra lateral */

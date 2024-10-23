@@ -15,6 +15,7 @@ import ProveedoresPage from '../../pages/ProveedoresPage'
 import UsuarioPage from '../../pages/UsuarioPage'
 import CategoriaProductPage from '../../pages/CategoriaProductPage' 
 import RegisterEmplead from "../../pages/RegisterEmplead";
+import CombosPage from "../../pages/CombosPage";
 import "./homed.css";
 import LoginPage from "../../pages/LoginPage";
 import {Bitacora} from '../../pages/Bitacora'
@@ -40,6 +41,7 @@ export const Homed = () => {
         <Route path="/login" element={<LoginPage/>}  />
         <Route path="/bitacora" element={<Bitacora/>}  />
         <Route path="/lote" element={<Lote/>}  />
+        <Route path="/combos" element={<CombosPage/>}  />
         
       </Routes>
 
